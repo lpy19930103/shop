@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shop.mapper.TbItemCatMapper">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="com.shop.pojo.TbItemCat">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="sort_order" property="sortOrder" jdbcType="INTEGER"/>
+        <result column="is_parent" property="isParent" jdbcType="TINYINT"/>
+        <result column="created" property="created" jdbcType="TIMESTAMP"/>
+        <result column="updated" property="updated" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        id,
+        parent_id,
+        name,
+        status,
+        sort_order,
+        is_parent,
+        created,
+        updated
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="tbItemCat.id">
+        INSERT INTO tb_item_cat (
+            id,
+            parent_id,
+            name,
+            status,
+            sort_order,
+            is_parent,
+            created,
+            updated
+        ) VALUES (
+            #{tbItemCat.id,jdbcType=BIGINT},
+            #{tbItemCat.parentId,jdbcType=BIGINT},
+            #{tbItemCat.name,jdbcType=VARCHAR},
+            #{tbItemCat.status,jdbcType=INTEGER},
+            #{tbItemCat.sortOrder,jdbcType=INTEGER},
+            #{tbItemCat.isParent,jdbcType=TINYINT},
+            #{tbItemCat.created,jdbcType=TIMESTAMP},
+            #{tbItemCat.updated,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="tbItemCat.id">
+        INSERT INTO tb_item_cat
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="tbItemCat.id!=null"> id,</if>
+            <if test="tbItemCat.parentId!=null"> parent_id,</if>
+            <if test="tbItemCat.name!=null"> name,</if>
+            <if test="tbItemCat.status!=null"> status,</if>
+            <if test="tbItemCat.sortOrder!=null"> sort_order,</if>
+            <if test="tbItemCat.isParent!=null"> is_parent,</if>
+            <if test="tbItemCat.created!=null"> created,</if>
+            <if test="tbItemCat.updated!=null"> updated,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="tbItemCat.id!=null">#{tbItemCat.id,jdbcType=BIGINT},
+            </if>
+            <if test="tbItemCat.parentId!=null">#{tbItemCat.parentId,jdbcType=BIGINT},
+            </if>
+            <if test="tbItemCat.name!=null">#{tbItemCat.name,jdbcType=VARCHAR},
+            </if>
+            <if test="tbItemCat.status!=null">#{tbItemCat.status,jdbcType=INTEGER},
+            </if>
+            <if test="tbItemCat.sortOrder!=null">#{tbItemCat.sortOrder,jdbcType=INTEGER},
+            </if>
+            <if test="tbItemCat.isParent!=null">#{tbItemCat.isParent,jdbcType=TINYINT},
+            </if>
+            <if test="tbItemCat.created!=null">#{tbItemCat.created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tbItemCat.updated!=null">#{tbItemCat.updated,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO tb_item_cat (
+            id,
+            parent_id,
+            name,
+            status,
+            sort_order,
+            is_parent,
+            created,
+            updated
+        )VALUES
+        <foreach collection="tbItemCats" item="tbItemCat" index="index" separator=",">
+            (
+            #{tbItemCat.id,jdbcType=BIGINT},
+            #{tbItemCat.parentId,jdbcType=BIGINT},
+            #{tbItemCat.name,jdbcType=VARCHAR},
+            #{tbItemCat.status,jdbcType=INTEGER},
+            #{tbItemCat.sortOrder,jdbcType=INTEGER},
+            #{tbItemCat.isParent,jdbcType=TINYINT},
+            #{tbItemCat.created,jdbcType=TIMESTAMP},
+            #{tbItemCat.updated,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="updateByPrimaryKeySelective">
+        UPDATE tb_item_cat
+        <set>
+            <if test="tbItemCat.parentId != null"> parent_id= #{tbItemCat.parentId,jdbcType=BIGINT},</if>
+            <if test="tbItemCat.name != null"> name= #{tbItemCat.name,jdbcType=VARCHAR},</if>
+            <if test="tbItemCat.status != null"> status= #{tbItemCat.status,jdbcType=INTEGER},</if>
+            <if test="tbItemCat.sortOrder != null"> sort_order= #{tbItemCat.sortOrder,jdbcType=INTEGER},</if>
+            <if test="tbItemCat.isParent != null"> is_parent= #{tbItemCat.isParent,jdbcType=TINYINT},</if>
+            <if test="tbItemCat.created != null"> created= #{tbItemCat.created,jdbcType=TIMESTAMP},</if>
+            <if test="tbItemCat.updated != null"> updated= #{tbItemCat.updated,jdbcType=TIMESTAMP}</if>
+        </set>
+        WHERE id = #{tbItemCat.id,jdbcType=BIGINT}
+    </update>
+</mapper>
+
