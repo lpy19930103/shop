@@ -9,7 +9,14 @@
         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
-    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
-    <dubbo:reference interface="com.shop.service.TestService" id="testServiceImpl" timeout="1000000"/>
+    <context:component-scan base-package="com.shop.controller"/>
+    <mvc:annotation-driven/>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <dubbo:application name="shop-manager-web"/>
+    <dubbo:registry address="zookeeper://localhost:2181"/>
+    <dubbo:reference interface="com.shop.service.TbItemCatService" id="TbItemCatService" timeout="1000000"/>
 
 </beans>

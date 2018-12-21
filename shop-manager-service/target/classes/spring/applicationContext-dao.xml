@@ -26,11 +26,13 @@
 		<property name="dataSource" ref="dataSource" />
 		<!-- 加载mybatis的全局配置文件 -->
 		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml" />
+		<!-- 别名包扫描 -->
+		<!--<property name="typeAliasesPackage" value="com.shop.pojo"/>-->
 	</bean>
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.taotao.mapper" />
-	</bean>
-	
 	<!-- mapper扫描器 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.shop.mapper" />
+	</bean>
 	
+
 </beans>

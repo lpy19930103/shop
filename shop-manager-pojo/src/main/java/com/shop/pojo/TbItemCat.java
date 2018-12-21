@@ -1,22 +1,26 @@
 package com.shop.pojo;
 
+import javax.persistence.*;
 import java.util.Date;
-
+@Table(name = "tb_item_cat")
 public class TbItemCat {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")// 注解声明该表的字段名
     private Long id;
-
+    @Column(name = "parent_id")
     private Long parentId;
-
+    @Column(name = "name")
     private String name;
-
+    @Column(name = "status")
     private Integer status;
-
+    @Column(name = "sort_order")
     private Integer sortOrder;
-
+    @Column(name = "is_parent")
     private Boolean isParent;
-
+    @Column(name = "created")
     private Date created;
-
+    @Column(name = "updated")
     private Date updated;
 
     public Long getId() {

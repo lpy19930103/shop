@@ -6,6 +6,7 @@
         <artifactId>shop-manager</artifactId>
         <groupId>com.lpy</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../shop-manager/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <!--<packaging>jar</packaging>-->
