@@ -1,6 +1,7 @@
 package com.shop.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.shop.pojo.BasePojo;
 import com.shop.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
@@ -8,9 +9,10 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Date;
 import java.util.List;
 
-public class BaseServiceImpl<T> implements BaseService<T> {
+public class BaseServiceImpl<T extends BasePojo> implements BaseService<T> {
     @Autowired
     private Mapper<T> mapper;
     private Class<T> clazz;
@@ -56,21 +58,35 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
     @Override
     public void save(T t) {
+        if (t.getCreated() == null) {
+            t.setCreated(new Date());
+            t.setUpdated(t.getCreated());
+        } else if (t.getUpdated() == null) {
+            t.setUpdated(t.getCreated());
+        }
         mapper.insert(t);
     }
 
     @Override
     public void saveSelective(T t) {
+        if (t.getCreated() == null) {
+            t.setCreated(new Date());
+            t.setUpdated(t.getCreated());
+        } else if (t.getUpdated() == null) {
+            t.setUpdated(t.getCreated());
+        }
         mapper.insertSelective(t);
     }
 
     @Override
     public void updateById(T t) {
+        t.setUpdated(new Date());
         mapper.updateByPrimaryKey(t);
     }
 
     @Override
     public void updateByIdSelective(T t) {
+        t.setUpdated(new Date());
         mapper.updateByPrimaryKeySelective(t);
     }
 

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Table(name = "tb_item_cat")
-public class TbItemCat implements Serializable {
+public class TbItemCat extends BasePojo implements Serializable {
 
     private static final long serialVersionUID = -2163749175232957219L;
 

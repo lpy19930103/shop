@@ -1,14 +1,17 @@
 package com.shop.pojo;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
-public class TbItemDesc {
+@Table(name = "tb_item_desc")
+public class TbItemDesc extends BasePojo implements Serializable {
+    private static final long serialVersionUID = -6793291918751639592L;
+    @Id
+    @Column(name = "item_id")
     private Long itemId;
-
-    private Date created;
-
-    private Date updated;
-
+    @Column(name = "item_desc")
     private String itemDesc;
 
     public Long getItemId() {
@@ -17,22 +20,6 @@ public class TbItemDesc {
 
     public void setItemId(Long itemId) {
         this.itemId = itemId;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
     }
 
     public String getItemDesc() {

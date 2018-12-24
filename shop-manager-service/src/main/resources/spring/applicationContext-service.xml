@@ -15,7 +15,11 @@
     <dubbo:application name="shop-manager"/>
     <dubbo:registry address="zookeeper://localhost:2181"/>
     <dubbo:protocol name="dubbo" port="20880"/>
-    <bean id="TbItemCatServiceImpl" class="com.shop.service.impl.TbItemCatServiceImpl"/>
+ <!--   <bean id="TbItemCatServiceImpl" class="com.shop.service.impl.TbItemCatServiceImpl"/>
+    <bean id="ItemDescServiceImpl" class="com.shop.service.impl.ItemDescServiceImpl"/>
+    <bean id="ItemServiceImpl" class="com.shop.service.impl.ItemServiceImpl"/>-->
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.shop.service.TbItemCatService" ref="TbItemCatServiceImpl"/>
+    <dubbo:service interface="com.shop.service.TbItemCatService" ref="tbItemCatServiceImpl"/>
+    <dubbo:service interface="com.shop.service.ItemDescService" ref="itemDescServiceImpl"/>
+    <dubbo:service interface="com.shop.service.ItemService" ref="itemServiceImpl"/>
 </beans>

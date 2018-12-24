@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("itemCat")
+@RequestMapping("item/cat")
 public class TbItemCatController {
 
 
@@ -20,6 +20,12 @@ public class TbItemCatController {
     @ResponseBody
     public List<TbItemCat> list(@PathVariable("pageNum") Integer pageNum) {
         return itemCatService.queryByPage(pageNum, 10);
+    }
+
+    @RequestMapping()
+    @ResponseBody
+    public List<TbItemCat> queryItemCatByParentId(@RequestParam(value = "id",defaultValue = "0") Long parentId) {
+        return itemCatService.queryItemCatByParentId(parentId);
     }
 
 }
