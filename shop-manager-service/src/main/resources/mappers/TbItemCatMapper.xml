@@ -16,9 +16,9 @@
 
 
     <select id="listItem" resultType="com.shop.pojo.TbItemCat">
-        select
+        SELECT
         <include refid="Base_Column_List"/>
-        from tb_item_cat
+        FROM tb_item_cat
 
     </select>
 </mapper>

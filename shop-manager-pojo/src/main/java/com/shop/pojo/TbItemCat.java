@@ -1,9 +1,12 @@
 package com.shop.pojo;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 @Table(name = "tb_item_cat")
-public class TbItemCat {
+public class TbItemCat implements Serializable {
+
+    private static final long serialVersionUID = -2163749175232957219L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")// 注解声明该表的字段名
