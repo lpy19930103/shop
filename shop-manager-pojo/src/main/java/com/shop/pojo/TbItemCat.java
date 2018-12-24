@@ -2,11 +2,12 @@ package com.shop.pojo;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+
 @Table(name = "tb_item_cat")
 public class TbItemCat implements Serializable {
 
     private static final long serialVersionUID = -2163749175232957219L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")// 注解声明该表的字段名
@@ -15,16 +16,8 @@ public class TbItemCat implements Serializable {
     private Long parentId;
     @Column(name = "name")
     private String name;
-    @Column(name = "status")
-    private Integer status;
-    @Column(name = "sort_order")
-    private Integer sortOrder;
-    @Column(name = "is_parent")
-    private Boolean isParent;
-    @Column(name = "created")
-    private Date created;
-    @Column(name = "updated")
-    private Date updated;
+    @Column(name = "type_id")
+    private Integer typeId;
 
     public Long getId() {
         return id;
@@ -47,46 +40,14 @@ public class TbItemCat implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getTypeId() {
+        return typeId;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getSortOrder() {
-        return sortOrder;
-    }
-
-    public void setSortOrder(Integer sortOrder) {
-        this.sortOrder = sortOrder;
-    }
-
-    public Boolean getIsParent() {
-        return isParent;
-    }
-
-    public void setIsParent(Boolean isParent) {
-        this.isParent = isParent;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 }

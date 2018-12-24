@@ -1,10 +1,9 @@
 package com.shop.mapper;
 
 
-import java.util.List;
 import com.shop.pojo.TbItemCat;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface TbItemCatMapper {
+public interface TbItemCatMapper extends Mapper<TbItemCat> {
 
-    List<TbItemCat> listItem();
 }
