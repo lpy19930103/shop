@@ -1,1 +1,4 @@
+com\shop\service\impl\ItemServiceImpl.class
 com\shop\service\impl\TbItemCatServiceImpl.class
+com\shop\service\impl\BaseServiceImpl.class
+com\shop\service\impl\ItemDescServiceImpl.class

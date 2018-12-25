@@ -48,4 +48,5 @@ com\shop\pojo\TbUserExample$Criteria.class
 com\shop\pojo\TbItemParamExample$Criterion.class
 com\shop\pojo\TbItem.class
 com\shop\pojo\TbOrderItemExample.class
+com\shop\pojo\BasePojo.class
 com\shop\pojo\TbOrderShippingExample$GeneratedCriteria.class

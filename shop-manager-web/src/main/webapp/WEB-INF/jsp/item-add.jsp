@@ -76,7 +76,7 @@
         TAOTAO.init({
             fun: function (node) {
                 //根据商品的分类id取商品 的规格模板，生成规格信息。第四天内容。
-                // TAOTAO.changeItemParam(node, "itemAddForm");
+                TAOTAO.changeItemParam(node, "itemAddForm");
             }
         });
 

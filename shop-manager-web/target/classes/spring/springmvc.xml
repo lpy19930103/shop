@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
-
+    <context:property-placeholder location="classpath:env.properties"/>
     <context:component-scan base-package="com.shop.controller"/>
     <mvc:annotation-driven/>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,4 +21,8 @@
     <dubbo:reference interface="com.shop.service.ItemService" id="ItemService" timeout="1000000"/>
     <dubbo:reference interface="com.shop.service.ItemDescService" id="ItemDescService" timeout="1000000"/>
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="5000000"/>
+
+    </bean>
 </beans>
