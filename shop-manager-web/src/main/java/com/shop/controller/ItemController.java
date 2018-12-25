@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import com.shop.common.pojo.EasyUIDataGridResult;
 import com.shop.pojo.TbItem;
 import com.shop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,13 @@ public class ItemController {
     @ResponseBody
     public void saveItem(@RequestBody TbItem item) {
         itemService.saveItem(item, item.getDesc());
+    }
+
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @ResponseBody
+    public EasyUIDataGridResult<TbItem> queryItemList(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                                      @RequestParam(value = "rows", defaultValue = "30") Integer rows) {
+        return itemService.queryItemList(page, rows);
     }
 }

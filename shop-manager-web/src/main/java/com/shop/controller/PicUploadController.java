@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shop.common.pojo.PicUploadResult;
 import org.apache.commons.lang3.StringUtils;
 import org.csource.fastdfs.*;
@@ -12,11 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 @Controller
 @RequestMapping("pic/upload")
 public class PicUploadController {
+
 
     @Value("${IMAGE_SERVER_URL}")
     private String IMAGE_SERVER_URL;
