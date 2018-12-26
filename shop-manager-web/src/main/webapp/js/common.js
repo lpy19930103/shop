@@ -109,9 +109,9 @@ var TT = TAOTAO = {
     // 初始化选择类目组件
     initItemCat : function(data){
     	//$(".selectItemCat") 类选择器 ，执行遍历
-    	$(".selectItemCat").click(function(i,e){
+    	$(".selectItemCat").each(function(i,e){
     		//将元素变成jquery的对象
-    		/*var _ele = $(e);
+    		var _ele = $(e);
     		if(data && data.cid){
     			_ele.after("<span style='margin-left:10px;'>"+data.cid+"</span>");
     		}else{
@@ -119,7 +119,7 @@ var TT = TAOTAO = {
     			_ele.after("<span style='margin-left:10px;'></span>");
     		}
     		//添加对元素的selectItemCat 所在的元素绑定点击事件
-    		_ele.unbind('click').click(function(){*/
+    		_ele.unbind('click').click(function(){
     			//创建一个div标签 在div中添加了ul标签  <div><ul></ul></div>
     			$("<div>").css({padding:"5px"}).html("<ul>")
     			//创建一个窗口 打开 
@@ -137,8 +137,7 @@ var TT = TAOTAO = {
     			    	//在当前的窗口中的ul标签下创建一课树
     			    	$("ul",_win).tree({
     			    		//异步发送请求 从服务端获取数据的URL
-    			    		url:'/item/cat',
-							method:'GET',
+    			    		url:'/item/cat/list',
     			    		animate:true,
     			    		onClick : function(node){
     			    			if($(this).tree("isLeaf",node.target)){
@@ -161,7 +160,7 @@ var TT = TAOTAO = {
     			    }
     			}).window('open');
     		});
-    	// });
+    	});
     },
     
     createEditor : function(select){

@@ -6,6 +6,9 @@
     <groupId>com.lpy</groupId>
     <artifactId>shop-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>../shop-portal</module>
+    </modules>
     <name>shop-parent</name>
     <packaging>pom</packaging>
     <description>Demo project for Spring Boot</description>

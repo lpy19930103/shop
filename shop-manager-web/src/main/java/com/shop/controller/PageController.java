@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("page")
 public class PageController {
 
-    @RequestMapping("{pageName}")
+    @RequestMapping(value = "{pageName}", method = RequestMethod.GET)
     public String toPage(@PathVariable("pageName") String pageName) {
+        System.out.println(pageName);
         return pageName;
     }
 }
