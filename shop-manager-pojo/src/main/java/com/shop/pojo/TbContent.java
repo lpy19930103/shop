@@ -1,28 +1,40 @@
 package com.shop.pojo;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
+@Table(name = "tb_content")
 public class TbContent {
+    @Id
     private Long id;
 
+    @Column(name = "category_id")
     private Long categoryId;
 
+    @Column
     private String title;
-
+    @Column(name = "sub_title")
     private String subTitle;
-
+    @Column(name = "title_desc")
     private String titleDesc;
-
+    @Column
     private String url;
-
+    @Column
     private String pic;
-
+    @Column
+    private String status;
+    @Column
+    private String sort_order;
+    @Transient
     private String pic2;
-
+    @Transient
     private Date created;
-
+    @Transient
     private Date updated;
-
+    @Transient
     private String content;
 
     public Long getId() {
