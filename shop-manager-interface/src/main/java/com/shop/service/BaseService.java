@@ -43,6 +43,8 @@ public interface BaseService<T> {
      */
     public List<T> queryByPage(Integer page, Integer rows);
 
+    public List<T> queryByPage(T t, Integer page, Integer rows);
+
     /**
      * 根据条件查询一条数据
      *
@@ -97,6 +99,6 @@ public interface BaseService<T> {
      * @param ids
      * @return
      */
-    public void deleteByIds(List<Object> ids);
+    public void deleteByIds(List<Long> ids);
 
 }

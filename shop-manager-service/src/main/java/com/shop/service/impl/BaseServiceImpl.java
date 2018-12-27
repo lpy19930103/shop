@@ -47,8 +47,13 @@ public class BaseServiceImpl<T extends BasePojo> implements BaseService<T> {
 
     @Override
     public List<T> queryByPage(Integer page, Integer rows) {
+        return queryByPage(null, page, rows);
+    }
+
+    @Override
+    public List<T> queryByPage(T t, Integer page, Integer rows) {
         PageHelper.startPage(page, rows);
-        return mapper.select(null);
+        return mapper.select(t);
     }
 
     @Override
@@ -96,7 +101,7 @@ public class BaseServiceImpl<T extends BasePojo> implements BaseService<T> {
     }
 
     @Override
-    public void deleteByIds(List<Object> ids) {
+    public void deleteByIds(List<Long> ids) {
         // 声明条件
         Example example = new Example(clazz);
         example.createCriteria().andIn("id", ids);

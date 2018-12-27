@@ -16,9 +16,7 @@
     </bean>
     <dubbo:application name="shop-portal"/>
     <dubbo:registry address="zookeeper://localhost:2181"/>
-    <dubbo:reference interface="com.shop.service.TbItemCatService" id="TbItemCatService" timeout="1000000"/>
-    <dubbo:reference interface="com.shop.service.ItemService" id="ItemService" timeout="1000000"/>
-    <dubbo:reference interface="com.shop.service.ItemDescService" id="ItemDescService" timeout="1000000"/>
+
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="5000000"/>

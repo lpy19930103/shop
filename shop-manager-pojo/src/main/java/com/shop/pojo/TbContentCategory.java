@@ -1,28 +1,23 @@
 package com.shop.pojo;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Date;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Table(name = "tb_content_category")
-public class TbContentCategory {
+public class TbContentCategory extends BasePojo implements Serializable {
+    private static final long serialVersionUID = -6614037094674935856L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "parent_id")
     private Long parentId;
     @Column
     private String name;
-
     private Integer status;
     @Column(name = "sort_order")
     private Integer sortOrder;
     @Column(name = "is_parent")
     private Boolean isParent;
-
-    private Date created;
-
-    private Date updated;
 
     public Long getId() {
         return id;
@@ -72,19 +67,5 @@ public class TbContentCategory {
         this.isParent = isParent;
     }
 
-    public Date getCreated() {
-        return created;
-    }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
 }

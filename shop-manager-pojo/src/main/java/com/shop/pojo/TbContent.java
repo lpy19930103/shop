@@ -4,16 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import java.util.Date;
+import java.io.Serializable;
 
 @Table(name = "tb_content")
-public class TbContent {
+public class TbContent extends BasePojo implements Serializable {
+    private static final long serialVersionUID = -8814965546107082529L;
     @Id
     private Long id;
-
     @Column(name = "category_id")
     private Long categoryId;
-
     @Column
     private String title;
     @Column(name = "sub_title")
@@ -30,10 +29,6 @@ public class TbContent {
     private String sort_order;
     @Transient
     private String pic2;
-    @Transient
-    private Date created;
-    @Transient
-    private Date updated;
     @Transient
     private String content;
 
@@ -99,22 +94,6 @@ public class TbContent {
 
     public void setPic2(String pic2) {
         this.pic2 = pic2 == null ? null : pic2.trim();
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
     }
 
     public String getContent() {

@@ -2,7 +2,7 @@ package com.shop.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.shop.common.pojo.EasyUIDataGridResult;
+import com.shop.common.pojo.EasyResult;
 import com.shop.mapper.ItemMapper;
 import com.shop.pojo.TbItem;
 import com.shop.pojo.TbItemDesc;
@@ -36,13 +36,13 @@ public class ItemServiceImpl extends BaseServiceImpl<TbItem> implements ItemServ
     }
 
     @Override
-    public EasyUIDataGridResult<TbItem> queryItemList(Integer page, Integer rows) {
+    public EasyResult<TbItem> queryItemList(Integer page, Integer rows) {
         PageHelper.startPage(page, rows);
         TbItem tbItem = new TbItem();
         tbItem.setStatus("1");
         List<TbItem> tbItems = queryListByWhere(tbItem);
         PageInfo<TbItem> tbItemPageInfo = new PageInfo<>(tbItems);
-        EasyUIDataGridResult<TbItem> tbItemEasyUIDataGridResult = new EasyUIDataGridResult<>();
+        EasyResult<TbItem> tbItemEasyUIDataGridResult = new EasyResult<TbItem>();
         tbItemEasyUIDataGridResult.setRows(tbItems);
         tbItemEasyUIDataGridResult.setTotal(tbItemPageInfo.getTotal());
         return tbItemEasyUIDataGridResult;

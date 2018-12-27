@@ -62,7 +62,7 @@ var contentListToolbar = [{
     	//创建窗口
     	TT.createWindow({
     		//动态的发送url /content-add  获取JSP页面，展示在窗口中
-			url : "/content-add"
+			url : "content-add"
 		}); 
     }
 },{
@@ -79,7 +79,7 @@ var contentListToolbar = [{
     		return ;
     	}
 		TT.createWindow({
-			url : "/content-edit",
+			url : "content-edit",
 			onLoad : function(){
 				var data = $("#contentList").datagrid("getSelections")[0];
 				$("#contentEditForm").form("load",data);
