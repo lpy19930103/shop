@@ -7,6 +7,7 @@ public class Jedis {
     @Test
     public void test() {
         redis.clients.jedis.Jedis jedis = new redis.clients.jedis.Jedis("192.168.52.128", 6379);
+        jedis.auth("admin");
         jedis.select(2);
         String ping = jedis.ping();
         System.out.println(ping);
@@ -24,7 +25,7 @@ public class Jedis {
 
     @Test
     public void jedisPoolTest() {
-        JedisPool jedisPool = new JedisPool("192.168.52.128", 6379);
+        JedisPool jedisPool = new JedisPool("127.0.0.1", 6379);
         redis.clients.jedis.Jedis jedis = jedisPool.getResource();
         jedis.select(2);
         String pong = jedis.ping();

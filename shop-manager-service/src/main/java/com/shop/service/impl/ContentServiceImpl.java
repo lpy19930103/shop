@@ -4,6 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shop.pojo.TbContent;
 import com.shop.service.ContentService;
+import com.shop.service.redis.RedisPool;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +19,12 @@ import java.util.Map;
 public class ContentServiceImpl extends BaseServiceImpl<TbContent> implements ContentService {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
+    @Autowired
+    private RedisPool poolJedisClient;
+
+    @Value("${SHOP_PORTAL_AD}")
+    private String SHOP_PORTAL_AD;
+
     @Override
     public List<TbContent> queryContentByCategoryId(Long id, Integer page, Integer rows) {
         TbContent tbContent = new TbContent();
@@ -24,6 +34,11 @@ public class ContentServiceImpl extends BaseServiceImpl<TbContent> implements Co
 
     @Override
     public String queryAD() {
+        String json = poolJedisClient.get(SHOP_PORTAL_AD);
+        if (StringUtils.isNotEmpty(json)) {
+            return json;
+        }
+
         TbContent tbContent = new TbContent();
         tbContent.setCategoryId(17L);
         List<TbContent> tbContents = queryListByWhere(tbContent);
@@ -40,10 +55,10 @@ public class ContentServiceImpl extends BaseServiceImpl<TbContent> implements Co
             map.put("heightB", 240);
             results.add(map);
         }
-        String json = "";
         try {
             json = MAPPER.writeValueAsString(results);
-        } catch (JsonProcessingException e) {
+            poolJedisClient.set(SHOP_PORTAL_AD, json, 60 * 60 * 24);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return json;

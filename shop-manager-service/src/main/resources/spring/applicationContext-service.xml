@@ -13,7 +13,7 @@
     <!-- 使用dubbo发布服务 -->
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="shop-manager"/>
-    <dubbo:registry address="zookeeper://localhost:2181"/>
+    <dubbo:registry address="zookeeper://192.168.52.128:2181"/>
     <dubbo:protocol name="dubbo" port="20880"/>
     <!--   <bean id="TbItemCatServiceImpl" class="com.shop.service.impl.TbItemCatServiceImpl"/>
        <bean id="ItemDescServiceImpl" class="com.shop.service.impl.ItemDescServiceImpl"/>
