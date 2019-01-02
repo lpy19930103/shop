@@ -3,10 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>shop-manager-service</artifactId>
+        <artifactId>shop-sso</artifactId>
         <groupId>com.lpy</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../shop-manager-service/pom.xml</relativePath>
+        <relativePath>../shop-sso/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>war</packaging>
@@ -48,10 +48,10 @@
         <groupId>com.github.pagehelper</groupId>
         <artifactId>pagehelper</artifactId>
     </dependency>
-    <dependency>
+   <!-- <dependency>
         <groupId>com.github.jsqlparser</groupId>
         <artifactId>jsqlparser</artifactId>
-    </dependency>
+    </dependency>-->
 
     <!-- Jackson Json处理工具包 -->
         <dependency>

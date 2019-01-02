@@ -29,9 +29,17 @@
         <property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"/>
     </bean>
 
-    <!-- 配置Mapper扫描 -->
+
+  <!--  &lt;!&ndash; 配置Mapper扫描 &ndash;&gt;
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <!-- 配置扫描的包 -->
+        &lt;!&ndash; 配置扫描的包 &ndash;&gt;
         <property name="basePackage" value="com.shop.mapper"/>
+    </bean>-->
+
+    <!-- TKmybatis自动扫描注册Mybatis mapper -->
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.shop.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
+
 </beans>

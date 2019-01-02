@@ -1,4 +1,4 @@
-package com.shop.service;
+package com.shop.common.base;
 
 import java.util.List;
 

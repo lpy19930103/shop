@@ -1,21 +1,61 @@
 package com.shop.pojo;
 
-import java.util.Date;
+import javax.persistence.*;
+import java.io.Serializable;
 
-public class TbUser {
+@Table(name = "tb_user")
+public class TbUser extends BasePojo implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column
     private String username;
-
+    @Column
     private String password;
-
+    @Column
     private String phone;
-
+    @Column
     private String email;
+    @Column
+    private String source_type;
+    @Column
+    private String nick_name;
+    @Column
+    private String name;
+    @Column
+    private String status;
 
-    private Date created;
+    public String getSource_type() {
+        return source_type;
+    }
 
-    private Date updated;
+    public void setSource_type(String source_type) {
+        this.source_type = source_type;
+    }
+
+    public String getNick_name() {
+        return nick_name;
+    }
+
+    public void setNick_name(String nick_name) {
+        this.nick_name = nick_name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
@@ -57,19 +97,4 @@ public class TbUser {
         this.email = email == null ? null : email.trim();
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
 }

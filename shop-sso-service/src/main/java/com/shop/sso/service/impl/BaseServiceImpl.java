@@ -1,8 +1,8 @@
-package com.shop.service.impl;
+package com.shop.sso.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.shop.pojo.BasePojo;
 import com.shop.common.base.BaseService;
+import com.shop.pojo.BasePojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.entity.Example;

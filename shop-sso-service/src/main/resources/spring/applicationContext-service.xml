@@ -9,14 +9,14 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <context:component-scan base-package="com.shop.sso.service"/>
+    <context:component-scan base-package="com.shop.sso.service.impl"/>
 
     <!-- 提供方应用信息，用于计算依赖关系 -->
-    <dubbo:application name="shop-sso-service" />
+    <dubbo:application name="shop-sso-service"/>
     <!-- 使用multicast广播注册中心暴露服务地址 -->
     <!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
     <!-- <dubbo:registry address="N/A" /> -->
     <dubbo:registry address="zookeeper://192.168.52.128:2181"/>
     <dubbo:protocol name="dubbo" port="20880"/>
-
+    <dubbo:service interface="com.shop.sso.service.UserService" ref="userServiceImpl"/>
 </beans>
