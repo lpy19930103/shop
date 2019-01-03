@@ -11,7 +11,7 @@ public class RedisPool implements RedisUtils {
     @Override
     public void set(String key, String value) {
         Jedis resource = jedisPool.getResource();
-        resource.auth("admin");
+//        resource.auth("admin");
         resource.set(key, value);
         resource.close();
     }
@@ -19,7 +19,7 @@ public class RedisPool implements RedisUtils {
     @Override
     public String get(String key) {
         Jedis resource = jedisPool.getResource();
-        resource.auth("admin");
+//        resource.auth("admin");
         String s = resource.get(key);
         resource.close();
         return s;
@@ -28,7 +28,7 @@ public class RedisPool implements RedisUtils {
     @Override
     public void del(String key) {
         Jedis resource = jedisPool.getResource();
-        resource.auth("admin");
+//        resource.auth("admin");
         resource.del(key);
         resource.close();
 
@@ -37,7 +37,7 @@ public class RedisPool implements RedisUtils {
     @Override
     public void expire(String key, Integer seconds) {
         Jedis resource = jedisPool.getResource();
-        resource.auth("admin");
+//        resource.auth("admin");
         resource.expire(key, seconds);
         resource.close();
 
@@ -46,7 +46,7 @@ public class RedisPool implements RedisUtils {
     @Override
     public void set(String key, String value, Integer seconds) {
         Jedis resource = jedisPool.getResource();
-        resource.auth("admin");
+//        resource.auth("admin");
         resource.set(key, value);
         resource.expire(key, seconds);
         resource.close();
@@ -55,7 +55,7 @@ public class RedisPool implements RedisUtils {
     @Override
     public Long incr(String key) {
         Jedis resource = jedisPool.getResource();
-        resource.auth("admin");
+//        resource.auth("admin");
         Long incr = resource.incr(key);
         resource.close();
         return incr;

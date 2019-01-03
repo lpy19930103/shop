@@ -1,6 +1,6 @@
 package com.shop.service.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shop.pojo.TbContent;
 import com.shop.service.ContentService;
@@ -18,6 +18,8 @@ import java.util.Map;
 @Service
 public class ContentServiceImpl extends BaseServiceImpl<TbContent> implements ContentService {
     private static final ObjectMapper MAPPER = new ObjectMapper();
+
+
 
     @Autowired
     private RedisPool poolJedisClient;
