@@ -5,14 +5,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
     <title>登录淘淘</title>
-    <link type="text/css" rel="stylesheet" href="../../css/login.css"/>
-    <script type="text/javascript" src="../../js/jquery-1.6.4.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/login.css"/>
+    <script type="text/javascript" src="../js/jquery-1.6.4.js"></script>
 </head>
 <body>
 <div class="w">
     <div id="logo">
     	<a href="http://localhost:82" clstag="passport|keycount|login|01">
-    		<img src="../../images/taotao-logo.gif" alt="淘淘" width="170" height="60"/>
+    		<img src="../images/taotao-logo.gif" alt="淘淘" width="170" height="60"/>
     	</a><b></b>
    	</div>
 </div>
