@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class UserServiceImpl extends BaseServiceImpl<TbUser> implements UserService {
     @Value("${SHOP_USER_TOKEN_KEY}")
@@ -53,5 +55,11 @@ public class UserServiceImpl extends BaseServiceImpl<TbUser> implements UserServ
         }
 
         return null;
+    }
+
+    @Override
+    public TbUser register(TbUser tbUser) {
+        saveSelective(tbUser);
+        return tbUser;
     }
 }

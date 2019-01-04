@@ -37,4 +37,31 @@
         <servlet-name>shop-sso-web</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>CrossOrigin</filter-name>
+        <filter-class>com.shop.sso.controller.CrossOriginFilter</filter-class>
+        <init-param>
+            <param-name>AccessControlAllowOrigin</param-name>
+            <param-value>*</param-value>
+        </init-param>
+        <init-param>
+            <param-name>AccessControlAllowMethods</param-name>
+            <param-value>POST, GET, DELETE, PUT</param-value>
+        </init-param>
+        <init-param>
+            <param-name>AccessControlMaxAge</param-name>
+            <param-value>3628800</param-value>
+        </init-param>
+        <init-param>
+            <param-name>AccessControlAllowHeaders</param-name>
+            <param-value>x-requested-with</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>CrossOrigin</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
 </web-app>

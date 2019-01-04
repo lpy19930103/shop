@@ -152,7 +152,6 @@
                     dataType: "jsonp",
                     jsonpCallback: "jsonp",
                     success: function (data) {
-                        console.info(data)
                         if (data.result) {//taotaoresult.data :true |false
                             //检查手机号是否存在
                             $.ajax({
@@ -160,7 +159,6 @@
                                 dataType: "jsonp",
                                 jsonpCallback: "jsonp",
                                 success: function (data) {//手机号没有被注册，现在可以用
-                                    console.log(data)
                                     if (data.result) {
                                         REGISTER.doSubmit();
                                     } else {
@@ -178,8 +176,10 @@
 
             },
             doSubmit: function () {
-                //$("#personRegForm").serialize()
-                $.post("/user/register", $("#personRegForm").serialize(), function (data) {
+                //
+                console.log($("#personRegForm").serialize())
+                $.post(REGISTER.param.surl + "/user/register", $("#personRegForm").serialize(), function (data) {
+                    console.info(data)
                     if (data.status == 200) {
                         alert('用户注册成功，请登录！');
                         REGISTER.login();//跳转到登录的页面
@@ -200,6 +200,7 @@
         };
 
         function jsonp(data) {
+            console.log(data);
         };
     </script>
 </body>
