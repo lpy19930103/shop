@@ -189,7 +189,7 @@
                 });
             },
             login: function () {
-                location.href = "/page/login";
+                location.href = "/page/login.html";
                 return false;
             },
             reg: function () {

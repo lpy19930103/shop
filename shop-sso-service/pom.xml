@@ -13,47 +13,52 @@
 
     <artifactId>shop-sso-service</artifactId>
     <dependencies>
-    <dependency>
-        <groupId>com.lpy</groupId>
-        <artifactId>shop-manager-dao</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </dependency>
+        <dependency>
+            <groupId>com.lpy</groupId>
+            <artifactId>shop-manager-dao</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lpy</groupId>
+            <artifactId>shop-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
-    <dependency>
-        <groupId>com.lpy</groupId>
-        <artifactId>shop-sso-interface</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </dependency>
+        <dependency>
+            <groupId>com.lpy</groupId>
+            <artifactId>shop-sso-interface</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
-    <!-- Spring -->
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-webmvc</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-jdbc</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-aspects</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context-support</artifactId>
-    </dependency>
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
 
-    <!-- 分页助手 -->
-    <dependency>
-        <groupId>com.github.pagehelper</groupId>
-        <artifactId>pagehelper</artifactId>
-    </dependency>
-   <!-- <dependency>
-        <groupId>com.github.jsqlparser</groupId>
-        <artifactId>jsqlparser</artifactId>
-    </dependency>-->
+        <!-- 分页助手 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+        </dependency>
+        <!-- <dependency>
+             <groupId>com.github.jsqlparser</groupId>
+             <artifactId>jsqlparser</artifactId>
+         </dependency>-->
 
-    <!-- Jackson Json处理工具包 -->
+        <!-- Jackson Json处理工具包 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>

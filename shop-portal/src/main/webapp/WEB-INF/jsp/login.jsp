@@ -75,7 +75,7 @@
 				return true;
 			},
 			doLogin:function() {
-				$.post("/user/login", $("#formlogin").serialize(),function(data){
+				$.post("http://localhost:84/user/login", $("#formlogin").serialize(),function(data){
 					if (data.status == 200) {
 						alert("登录成功！");
 						if (redirectUrl == "") {

@@ -9,11 +9,22 @@
         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
     <context:component-scan base-package="com.shop.sso.controller"/>
+    <context:property-placeholder location="classpath:properties/*.properties"/>
     <mvc:annotation-driven/>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!-- 配置jedis连接池 -->
+    <bean id="jedisPool"
+          class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="host" value="${redis.host}"/>
+        <constructor-arg name="port" value="${redis.prot}"/>
+    </bean>
+    <!-- 配置操作单机版redis的实现类 -->
+    <bean id="poolJedisClient" class="com.shop.sso.redis.RedisPool"/>
+
     <dubbo:application name="shop-ssp-web"/>
     <dubbo:registry address="zookeeper://192.168.52.130:2181"/>
 

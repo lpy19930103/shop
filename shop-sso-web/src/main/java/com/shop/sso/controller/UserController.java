@@ -3,10 +3,14 @@ package com.shop.sso.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shop.common.pojo.EasyResult;
+import com.shop.common.utils.CookieUtils;
 import com.shop.pojo.TbUser;
+import com.shop.sso.redis.RedisPool;
+import com.shop.sso.redis.RedisUtils;
 import com.shop.sso.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +26,19 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RedisPool poolJedisClient;
+
     private static final ObjectMapper MAPPER = new ObjectMapper();
+
+    @Value(value = "LOGIN_COOKIE")
+    private String LOGIN_COOKIE;
+
+    @Value(value = "SHOP_SSO_KEY")
+    private String SHOP_SSO_KEY;
+    @Value(value = "USER_TOKEN")
+    private String USER_TOKEN;
 
     @RequestMapping("check/{param}/{type}")
     @ResponseBody
@@ -57,11 +73,7 @@ public class UserController {
     @RequestMapping("register")
     @ResponseBody
     @CrossOrigin(origins = "http://localhost:82")
-    public EasyResult register(TbUser user,  HttpServletResponse httpServletResponse) {
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
-        httpServletResponse.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type,token");
-        httpServletResponse.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
-
+    public EasyResult register(TbUser user) {
         TbUser register = userService.register(user);
         EasyResult<TbUser> easyResult = new EasyResult<>();
         if (register != null) {
@@ -73,6 +85,34 @@ public class UserController {
             easyResult.setMsg("注册失败");
         }
         return easyResult;
+    }
+
+
+    @RequestMapping("login")
+    @ResponseBody
+    @CrossOrigin(origins = "http://localhost:82")
+    public EasyResult login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, TbUser user) {
+        EasyResult<TbUser> easyResult = new EasyResult<>();
+        TbUser result = userService.login(user);
+        if (result != null) {
+            try {
+                easyResult.setDTO(result);
+                easyResult.setStatus(200);
+                easyResult.setMsg("登录成功");
+                // 生成唯一数ticket,可是使用redis的唯一数+用户id
+                String ticket = "" + poolJedisClient.incr(this.LOGIN_COOKIE) + result.getId();
+                // 把ticket和用户数据放到redis中,模拟session，原来的session有效时间是半小时
+                poolJedisClient.set(SHOP_SSO_KEY + ticket, MAPPER.writeValueAsString(result), 60 * 30);
+                CookieUtils.setCookie(httpServletRequest, httpServletResponse, USER_TOKEN, ticket, 60 * 60 * 24, true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            easyResult.setStatus(200);
+            easyResult.setMsg("登录失败");
+        }
+        return easyResult;
+
     }
 
 }
