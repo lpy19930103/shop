@@ -117,7 +117,7 @@
         var REGISTER = {
             param: {
                 //单点登录系统的url
-                surl: ""
+                surl: "http://localhost:84"
             },
             inputcheck: function () {
                 //不能为空检查
@@ -149,13 +149,19 @@
                 //检查用户是否已经被占用
                 $.ajax({
                     url: REGISTER.param.surl + "/user/check/" + escape($("#regName").val()) + "/1?r=" + Math.random(),
+                    dataType: "jsonp",
+                    jsonpCallback: "jsonp",
                     success: function (data) {
-                        if (data.data) {//taotaoresult.data :true |false
+                        console.info(data)
+                        if (data.result) {//taotaoresult.data :true |false
                             //检查手机号是否存在
                             $.ajax({
                                 url: REGISTER.param.surl + "/user/check/" + $("#phone").val() + "/2?r=" + Math.random(),
+                                dataType: "jsonp",
+                                jsonpCallback: "jsonp",
                                 success: function (data) {//手机号没有被注册，现在可以用
-                                    if (data.data) {
+                                    console.log(data)
+                                    if (data.result) {
                                         REGISTER.doSubmit();
                                     } else {
                                         alert("此手机号已经被注册！");
@@ -191,6 +197,9 @@
                     this.beforeSubmit();
                 }
             }
+        };
+
+        function jsonp(data) {
         };
     </script>
 </body>

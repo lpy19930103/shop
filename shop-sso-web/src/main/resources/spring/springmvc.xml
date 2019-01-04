@@ -15,7 +15,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <dubbo:application name="shop-ssp-web"/>
-    <dubbo:registry address="zookeeper://192.168.52.129:2181"/>
+    <dubbo:registry address="zookeeper://192.168.52.130:2181"/>
 
     <dubbo:reference interface="com.shop.sso.service.UserService" id="UserService" timeout="1000000"/>
 

@@ -3,11 +3,14 @@ package com.shop.sso.controller;
 import com.shop.common.pojo.EasyResult;
 import com.shop.pojo.TbUser;
 import com.shop.sso.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -18,15 +21,15 @@ public class UserController {
 
     @RequestMapping("check/{param}/{type}")
     @ResponseBody
-    public EasyResult userCheck(@PathVariable(value = "param") String param, @PathVariable(value = "type") Integer type) {
+    public String userCheck(HttpServletRequest httpServletrequest, @PathVariable(value = "param") String param, @PathVariable(value = "type") Integer type) {
         boolean userCheck = userService.userCheck(param, type);
-        EasyResult<Boolean> booleanEasyResult = new EasyResult<>();
-        if (userCheck) {
-            booleanEasyResult.setMsg("参数可以使用");
-        } else {
-            booleanEasyResult.setMsg("参数不可以使用");
+        String callback = httpServletrequest.getParameter("callback");
+        String result = ("{result:" + userCheck + "}");
+        System.out.println(userCheck);
+        if (StringUtils.isNotBlank(callback)) {
+            return callback + "(" + result + ")";
         }
-        return booleanEasyResult;
+        return result;
 
     }
 
