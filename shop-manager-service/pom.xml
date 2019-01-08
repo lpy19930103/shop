@@ -11,7 +11,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>shop-manager-service</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
+    <modules>
+        <module>../shop-search</module>
+        <module>../shop-search-interface</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>com.lpy</groupId>

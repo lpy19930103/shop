@@ -9,7 +9,9 @@
     <modules>
         <module>../shop-portal</module>
         <module>../shop-sso</module>
-        <module>../shop-sso-web</module>
+        <module>../shop-manager</module>
+        <module>../shop-common</module>
+        <module>../shop-manager-web</module>
     </modules>
     <name>shop-parent</name>
     <packaging>pom</packaging>
