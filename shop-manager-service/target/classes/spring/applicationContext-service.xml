@@ -9,13 +9,19 @@
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 
-    <context:component-scan base-package="com.shop.service"/>
+    <context:component-scan base-package="com.shop.service.impl"/>
     <!-- 使用dubbo发布服务 -->
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="shop-manager"/>
-    <dubbo:registry address="zookeeper://localhost:2181"/>
+    <dubbo:registry address="zookeeper://192.168.52.131:2181"/>
     <dubbo:protocol name="dubbo" port="20880"/>
-    <bean id="TbItemCatServiceImpl" class="com.shop.service.impl.TbItemCatServiceImpl"/>
+    <!--   <bean id="TbItemCatServiceImpl" class="com.shop.service.impl.TbItemCatServiceImpl"/>
+       <bean id="ItemDescServiceImpl" class="com.shop.service.impl.ItemDescServiceImpl"/>
+       <bean id="ItemServiceImpl" class="com.shop.service.impl.ItemServiceImpl"/>-->
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.shop.service.TbItemCatService" ref="TbItemCatServiceImpl"/>
+    <dubbo:service interface="com.shop.service.TbItemCatService" ref="tbItemCatServiceImpl"/>
+    <dubbo:service interface="com.shop.service.ItemDescService" ref="itemDescServiceImpl"/>
+    <dubbo:service interface="com.shop.service.ItemService" ref="itemServiceImpl"/>
+    <dubbo:service interface="com.shop.service.ContentService" ref="contentServiceImpl"/>
+    <dubbo:service interface="com.shop.service.ContentCategoryService" ref="contentCategoryServiceImpl"/>
 </beans>

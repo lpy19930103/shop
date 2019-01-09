@@ -1,8 +1,8 @@
-I:\web\shop\shop-manager-service\src\main\java\com\shop\service\redis\RedisPool.java
-I:\web\shop\shop-manager-service\src\main\java\com\shop\service\redis\RedisUtils.java
-I:\web\shop\shop-manager-service\src\main\java\com\shop\service\impl\BaseServiceImpl.java
-I:\web\shop\shop-manager-service\src\main\java\com\shop\service\impl\ContentServiceImpl.java
-I:\web\shop\shop-manager-service\src\main\java\com\shop\service\impl\ItemDescServiceImpl.java
-I:\web\shop\shop-manager-service\src\main\java\com\shop\service\impl\TbItemCatServiceImpl.java
-I:\web\shop\shop-manager-service\src\main\java\com\shop\service\impl\ContentCategoryServiceImpl.java
-I:\web\shop\shop-manager-service\src\main\java\com\shop\service\impl\ItemServiceImpl.java
+I:\web\shopweb\shop-manager-service\src\main\java\com\shop\service\impl\BaseServiceImpl.java
+I:\web\shopweb\shop-manager-service\src\main\java\com\shop\service\impl\TbItemCatServiceImpl.java
+I:\web\shopweb\shop-manager-service\src\main\java\com\shop\service\impl\ContentServiceImpl.java
+I:\web\shopweb\shop-manager-service\src\main\java\com\shop\service\impl\ItemDescServiceImpl.java
+I:\web\shopweb\shop-manager-service\src\main\java\com\shop\service\impl\ContentCategoryServiceImpl.java
+I:\web\shopweb\shop-manager-service\src\main\java\com\shop\service\redis\RedisPool.java
+I:\web\shopweb\shop-manager-service\src\main\java\com\shop\service\redis\RedisUtils.java
+I:\web\shopweb\shop-manager-service\src\main\java\com\shop\service\impl\ItemServiceImpl.java
