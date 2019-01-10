@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("page")
+//@RequestMapping("page")
 public class PageController {
 
     @RequestMapping(value = "{pageName}", method = RequestMethod.GET)

@@ -26,12 +26,11 @@ public class PicUploadController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public PicUploadResult upload(MultipartFile multipartFile) {
+    public PicUploadResult upload(MultipartFile uploadFile,String Filename) {
         boolean flag = false;
         PicUploadResult picUploadResult = new PicUploadResult();
-        System.out.println(multipartFile.getOriginalFilename());
         for (String type : TYPE) {
-            if (StringUtils.endsWithIgnoreCase(multipartFile.getOriginalFilename(),type)) {
+            if (StringUtils.endsWithIgnoreCase(uploadFile.getOriginalFilename(),type)) {
                 flag = true;
                 break;
             }
@@ -42,7 +41,7 @@ public class PicUploadController {
         }
         flag = false;
         try {
-            BufferedImage read = ImageIO.read(multipartFile.getInputStream());
+            BufferedImage read = ImageIO.read(uploadFile.getInputStream());
             if (read != null) {
                 picUploadResult.setHeight(String.valueOf(read.getHeight()));
                 picUploadResult.setWidth(String.valueOf(read.getWidth()));
@@ -51,7 +50,7 @@ public class PicUploadController {
 
         if (flag) {
             // 1. 加载FastDFS的tracker的配置信息，其实就是 tracker_server=192.168.37.161:22122
-            ClientGlobal.init(System.getProperty("user.dir") + "\\src\\main\\resources\\fastdfs-client.properties");
+            ClientGlobal.init(System.getProperty("user.dir") + "\\src\\main\\resources\\properties\\fastdfs-client.properties");
             // 2. 创建TrackerClient，直接new
             TrackerClient trackerClient = new TrackerClient();
             // 3. 使用TrackerClient，获取TrackerServer
@@ -61,8 +60,8 @@ public class PicUploadController {
             // 5. 创建StorageClient，需要两个参数TrackerServer，StorageServer
             StorageClient storageClient = new StorageClient(connection, storageServer);
             // 6. 使用StorageClient上传图片
-            String ext = StringUtils.substringAfterLast(multipartFile.getOriginalFilename(), ".");
-            String[] result = storageClient.upload_file(multipartFile.getBytes(), ext, null);
+            String ext = StringUtils.substringAfterLast(uploadFile.getOriginalFilename(), ".");
+            String[] result = storageClient.upload_file(uploadFile.getBytes(), ext, null);
             // 7. 进行返回的结果的拼接，上传图片的url
             String picUrl = this.IMAGE_SERVER_URL + result[0] + "/" + result[1];
 
@@ -71,6 +70,7 @@ public class PicUploadController {
 
             // 上传成功设置为1
             picUploadResult.setError(1);
+            picUploadResult.setStatus(200);
 
         }
         } catch (Exception e) {

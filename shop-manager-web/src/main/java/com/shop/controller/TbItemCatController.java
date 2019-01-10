@@ -22,7 +22,7 @@ public class TbItemCatController {
         return itemCatService.queryByPage(pageNum, 10);
     }
 
-    @RequestMapping()
+    @RequestMapping("list")
     @ResponseBody
     public List<TbItemCat> queryItemCatByParentId(@RequestParam(value = "id",defaultValue = "0") Long parentId) {
         return itemCatService.queryItemCatByParentId(parentId);

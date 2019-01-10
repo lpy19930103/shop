@@ -8,13 +8,20 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
-    <!--<context:property-placeholder location="classpath:properties/*.properties"/>-->
+    <context:property-placeholder location="classpath:properties/*.properties"/>
     <context:component-scan base-package="com.shop.controller"/>
     <mvc:annotation-driven/>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!-- 配置静态资源映射  -->
+    <!-- 指定/WEB-INF/js   /WEB-INF/css/  下的所有的静态资源包括子目录下的静态资源  都不被拦截-->
+    <!--  mapping=/js/**  :表示访问静态资源的路径的形式    可以访问 /js/下的静态资源或者所有的子目录下的静态资源-->
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
+    <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+
     <dubbo:application name="shop-manager-web"/>
     <dubbo:registry address="zookeeper://192.168.52.131:2181"/>
     <dubbo:reference interface="com.shop.service.TbItemCatService" id="TbItemCatService" timeout="1000000"/>
@@ -24,6 +31,8 @@
     <dubbo:reference interface="com.shop.service.ContentService" id="ContentService" timeout="1000000"/>
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设定默认编码 -->
+        <property name="defaultEncoding" value="UTF-8"></property>
         <property name="maxUploadSize" value="5000000"/>
 
     </bean>

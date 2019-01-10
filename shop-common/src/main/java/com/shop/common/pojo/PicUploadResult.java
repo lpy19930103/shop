@@ -7,6 +7,15 @@ public class PicUploadResult {
     private String height;// 图片的高
     private String url;// 图片的上传地址
     private String msg;
+    private Integer status;
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public String getMsg() {
         return msg;

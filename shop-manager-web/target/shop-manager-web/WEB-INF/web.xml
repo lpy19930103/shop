@@ -4,7 +4,7 @@
          version="2.5">
     <display-name>shop-manager-web</display-name>
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
     <!-- 配置dispatcherservlet -->
     <!-- url的拦截形式 -->
@@ -37,4 +37,5 @@
         <servlet-name>shop-manager-web</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
 </web-app>
