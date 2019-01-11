@@ -17,6 +17,13 @@
     <artifactId>shop-search</artifactId>
     <packaging>pom</packaging>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version> 3.2.4.RELEASE  </version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- 单元测试 -->
         <dependency>
             <groupId>junit</groupId>
