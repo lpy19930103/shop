@@ -12,7 +12,7 @@
     <mvc:annotation-driven/>
     <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
@@ -23,8 +23,4 @@
     <!-- 声明要调用的服务，timeout是设置连接超时最长时间,如果不设置，超时时间默认是3秒 -->
      <dubbo:reference interface="com.shop.search.service.SearchService"
      id="searchService" timeout="1000000" />
-    <bean id="httpSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
-        <constructor-arg name="baseURL" value="${solr.host1}"/>
-    </bean>
-
 </beans>

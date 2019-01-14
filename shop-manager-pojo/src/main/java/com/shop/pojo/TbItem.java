@@ -17,7 +17,7 @@ public class TbItem extends BasePojo implements Serializable {
     @Column
     private String sell_point;
     @Column
-    private BigDecimal price;
+    private String price;
     @Column
     private Integer stock_count;
     @Column
@@ -59,6 +59,7 @@ public class TbItem extends BasePojo implements Serializable {
     @Transient
     private String desc;
 
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
@@ -87,11 +88,11 @@ public class TbItem extends BasePojo implements Serializable {
         this.sell_point = sell_point;
     }
 
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

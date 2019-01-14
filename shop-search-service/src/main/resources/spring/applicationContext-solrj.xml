@@ -15,7 +15,7 @@
         <property name="defaultCollection" value="${solr.collectionName}"/>
     </bean>
 
-    <bean id="httpSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+    <bean  class="org.apache.solr.client.solrj.impl.HttpSolrServer">
         <constructor-arg name="baseURL" value="${solr.host1}"/>
     </bean>
 </beans>

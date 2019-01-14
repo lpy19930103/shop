@@ -53,7 +53,7 @@ public class SolrTest {
                 document.setField("item_price", item.getPrice());
                 // 商品图片
                 if (StringUtils.isNotBlank(item.getImage())) {
-                    document.setField("item_image", StringUtils.split(item.getImage(), ",")[0]);
+                    document.setField("item_image", item.getImage());
                 } else {
                     document.setField("item_image", "");
                 }
