@@ -6,12 +6,10 @@
         <artifactId>shop-search</artifactId>
         <groupId>com.lpy</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../shop-search/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>shop-search-interface</artifactId>
-    <packaging>pom</packaging>
     <dependencies>
         <dependency>
             <groupId>com.lpy</groupId>

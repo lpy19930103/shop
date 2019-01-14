@@ -39,7 +39,7 @@
     <servlet-mapping>
         <servlet-name>shop-search-web</servlet-name>
         <!-- 所有以html结尾的请求进入springMVC -->
-        <url-pattern>*.html</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 </web-app>

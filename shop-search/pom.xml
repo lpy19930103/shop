@@ -12,6 +12,7 @@
     <modules>
         <module>../shop-search-interface</module>
         <module>../shop-search-service</module>
+        <module>../shop-search-web</module>
     </modules>
 
     <artifactId>shop-search</artifactId>
