@@ -13,6 +13,7 @@
         <module>../shop-common</module>
         <module>../shop-manager-web</module>
         <module>../shop-search</module>
+        <module>../shop-item-web</module>
     </modules>
     <name>shop-parent</name>
     <packaging>pom</packaging>
