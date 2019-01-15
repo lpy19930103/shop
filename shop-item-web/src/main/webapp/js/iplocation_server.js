@@ -226,7 +226,7 @@ var noItemOver = {
 //            isItemOver = isItemOver || false;
 //
 //
-//        log( pageConfig.product.cat[0] + "&SORecPage", 'Show');
+//        log( pageConfig.product.cart[0] + "&SORecPage", 'Show');
 //
 //        $.ajax({
 //            url: url,
@@ -939,7 +939,7 @@ function SetNotifyByNoneStock(stockstatus,ext) {
 //                    }
 //            }
 //            //if($("#choose-type .selected").attr("data-id")=="100")
-//            if(pageConfig.product.cat[2] !== 655 || $("#choose-type .selected").attr("data-id")=="100") {
+//            if(pageConfig.product.cart[2] !== 655 || $("#choose-type .selected").attr("data-id")=="100") {
 //                $.append_button.hide();
 //                $.easybuy_button.hide();
 //                $.divide_button.hide();
@@ -1006,7 +1006,7 @@ function SetNotifyByNoneStock(stockstatus,ext) {
 //                }
 //        } 
 //        //if($("#choose-type .selected").attr("data-id")=="100")
-//        if(pageConfig.product.cat[2] !== 655 || $("#choose-type .selected").attr("data-id")=="100") {
+//        if(pageConfig.product.cart[2] !== 655 || $("#choose-type .selected").attr("data-id")=="100") {
 //            $.append_button.hide();
 //            $.easybuy_button.hide();
 //            $.divide_button.hide();
@@ -2321,7 +2321,7 @@ if((pageConfig.product.skuid+"").length==6||(pageConfig.product.skuid+"").length
 	}
 //	$.ajax({type:"get",
 //			dataType:"jsonp",
-//			url:"http://x.jd.com/ShowInterface?ad_ids=57:1&urlcid3="+pageConfig.product.cat[2]+"&ad_type=8&spread_type=1&debug=0&location_info=0",
+//			url:"http://x.jd.com/ShowInterface?ad_ids=57:1&urlcid3="+pageConfig.product.cart[2]+"&ad_type=8&spread_type=1&debug=0&location_info=0",
 //			success:function(data){
 //				 if (data) {
 //					if (data.errcode == 0) {

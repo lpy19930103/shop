@@ -312,7 +312,7 @@ function getParam(paramName)
  * @type String
  *
  * @name $.jCookie
- * @cat Plugins/Cookie
+ * @cart Plugins/Cookie
  * @author Klaus Hartl/klaus.hartl@stilbuero.de
  * 
  * @modifiedBy jizhou
