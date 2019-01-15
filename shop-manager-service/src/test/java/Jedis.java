@@ -6,7 +6,7 @@ public class Jedis {
 
     @Test
     public void test() {
-        redis.clients.jedis.Jedis jedis = new redis.clients.jedis.Jedis("192.168.52.134", 6379);
+        redis.clients.jedis.Jedis jedis = new redis.clients.jedis.Jedis("192.168.52.135", 6379);
         jedis.auth("admin");
         jedis.select(2);
         String ping = jedis.ping();

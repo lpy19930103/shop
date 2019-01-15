@@ -13,6 +13,10 @@
     <packaging>war</packaging>
     <dependencies>
         <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.lpy</groupId>
             <artifactId>shop-manager-interface</artifactId>
             <version>0.0.1-SNAPSHOT</version>

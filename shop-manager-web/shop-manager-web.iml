@@ -30,6 +30,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: com.github.pagehelper:pagehelper:3.6.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.jsqlparser:jsqlparser:0.9.1" level="project" />
     <orderEntry type="module" module-name="shop-manager-interface" />
     <orderEntry type="module" module-name="shop-manager-pojo" />
     <orderEntry type="library" name="Maven: tk.mybatis:mapper:4.1.2" level="project" />
@@ -80,7 +82,7 @@
     <orderEntry type="library" name="Maven: io.netty:netty:3.7.0.Final" level="project" />
     <orderEntry type="library" name="Maven: com.github.sgroschupf:zkclient:0.1" level="project" />
     <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.23" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.activemq:activemq-all:5.13.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.activemq:activemq-all:5.9.1" level="project" />
     <orderEntry type="library" name="Maven: net.oschina.zcx7878:fastdfs-client-java:1.27.0.0" level="project" />
   </component>
 </module>

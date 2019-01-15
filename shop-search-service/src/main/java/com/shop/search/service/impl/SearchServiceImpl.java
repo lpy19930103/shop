@@ -1,6 +1,7 @@
 package com.shop.search.service.impl;
 
 import com.shop.common.pojo.EasyResult;
+import com.shop.mapper.ItemMapper;
 import com.shop.pojo.TbItem;
 import com.shop.search.service.SearchService;
 
@@ -10,6 +11,7 @@ import org.apache.solr.client.solrj.impl.HttpSolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,10 @@ import java.util.Map;
 @Service
 public class SearchServiceImpl extends BaseServiceImpl<TbItem> implements SearchService {
     @Autowired
-    HttpSolrServer httpSolrServer;
+    private HttpSolrServer httpSolrServer;
+
+    @Autowired
+    private ItemMapper itemMapper;
 
 
     @Override
@@ -91,5 +96,34 @@ public class SearchServiceImpl extends BaseServiceImpl<TbItem> implements Search
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void saveItem(Long itemId) {
+        TbItem item = itemMapper.selectByPrimaryKey(itemId);
+        // 保存索引库
+        SolrInputDocument document = new SolrInputDocument();
+        // 商品id
+        document.setField("id", item.getId().toString());
+        // 商品标题
+        document.setField("item_title", item.getTitle());
+        // 商品价格
+        document.setField("item_price", item.getPrice());
+        // 商品图片
+        document.setField("item_image", item.getImage());
+        // 商品类目id
+        document.setField("item_cid", item.getCategory_id());
+        // 商品状态
+        document.setField("item_status", item.getStatus());
+
+        try {
+            // 保存到索引库中
+            this.httpSolrServer.add(document);
+            this.httpSolrServer.commit();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 }

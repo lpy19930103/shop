@@ -6,3 +6,4 @@ com\shop\service\impl\TbItemCatServiceImpl.class
 com\shop\service\redis\RedisPool.class
 com\shop\service\impl\ContentCategoryServiceImpl.class
 com\shop\service\impl\ItemDescServiceImpl.class
+com\shop\service\impl\ItemServiceImpl$1.class
