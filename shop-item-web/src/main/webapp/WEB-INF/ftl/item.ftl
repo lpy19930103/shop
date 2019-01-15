@@ -44,7 +44,7 @@
 	<div id="product-intro" >
 		<div id="name">
 			<h1>${item.title }</h1>
-			<strong>${item.sellPoint}</strong>
+			<strong>${item.sell_point}</strong>
 		</div><!--name end-->
 		<script type='text/javascript'>var warestatus = 1; var eleSkuIdKey =[];</script>
 		<div class="clearfix" clstag="shangpin|keycount|product|share">
@@ -53,7 +53,7 @@
 	<li id="summary-price">
 		<div class="dt">淘&nbsp;淘&nbsp;价：</div>
 		<div class="dd">
-			<strong class="p-price"  id="jd-price">￥${item.price / 100 } </strong>
+			<strong class="p-price"  id="jd-price">￥${item.price  } </strong>
 			<a id="notice-downp" href="#none" target="_blank" clstag="shangpin|keycount|product|jiangjia">(降价通知)</a>
 		</div>
 	</li>
@@ -142,7 +142,7 @@
 		
 		<div id="preview">
 			<div id="spec-n1" class="jqzoom" clstag="shangpin|keycount|product|spec-n1">
-				<img data-img="1" width="350" height="350" src="${item.images[0]}" alt="${item.title}"  jqimg="${item.images[0]}"/>
+				<img data-img="1" width="350" height="350" src="${item.image}" alt="${item.title}"  jqimg="${item.image}"/>
 			</div>
 					
 			<div id="spec-list" clstag="shangpin|keycount|product|spec-n5">
@@ -150,7 +150,7 @@
 				<a href="javascript:;" class="spec-control" id="spec-backward"></a>
 				<div class="spec-items">
 					<ul class="lh">   
-						<#list item.images as pic>  
+					<#--	<#list item.image as pic>
 						<#if pic_index==0>
 									<li>
 										<img data-img="1" class="img-hover"  alt="${item.title}" src="${pic}" width="50" height="50" data-url="${pic}">
@@ -160,7 +160,7 @@
 										<img data-img="1" alt="${item.title}" src="${pic}" width="50" height="50" data-url="${pic}">
 									</li>
 						</#if>
-						</#list>
+						</#list>-->
 					</ul>
 				</div>
 			</div>
@@ -214,7 +214,7 @@
 					<b></b>如果您发现商品信息不准确，欢迎纠错
 				</div>
 				<div id="item-desc" class="detail-content">
-						${itemDesc.itemDesc }
+						${itemDesc.item_desc!"null"}
 				</div>
 			</div>
 			<div class="mc hide" data-widget="tab-content" id="product-detail-2">
