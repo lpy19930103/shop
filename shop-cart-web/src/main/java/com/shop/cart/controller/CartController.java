@@ -46,10 +46,11 @@ public class CartController {
             cartService.saveItemByCart(user.getId(), itemId, num);
         } else {
             // 用户未登录
+            return "redirect:http://localhost:82/page/login.html";
         }
 
         // 重定向到购物车详情页
-        return "redirect:/show.html";
+        return "redirect:/cart/show.html";
     }
 
     @RequestMapping(value = "show", method = RequestMethod.GET)
@@ -65,13 +66,42 @@ public class CartController {
 
         } else {
             // 用户未登录
-
+            return "redirect:http://localhost:82/page/login.html";
         }
 
         // 保存购物车到模型中
         model.addAttribute("cartList", cartList);
-
         return "cart";
+    }
+
+    @RequestMapping(value = "update/num/{itemId}/{num}")
+    public String updateNum(@PathVariable("itemId") Long itemId, @PathVariable("num") Integer num, HttpServletRequest request) {
+        String cookieValue = CookieUtils.getCookieValue(request, USER_TOKEN);
+        cookieValue = "422";
+        TbUser user = userService.queryUserByToken(cookieValue);
+        if (user != null) {
+            //已登录
+            cartService.upDateItemByCart(user.getId(), itemId, num);
+        } else {
+            // 用户未登录
+            return "redirect:http://localhost:82/page/login.html";
+        }
+        return "redirect:/cart/show.html";
+    }
+
+    @RequestMapping("delete/{itemId}")
+    public String deleteCart(@PathVariable("itemId") Long itemId, HttpServletRequest request) {
+        String cookieValue = CookieUtils.getCookieValue(request, USER_TOKEN);
+        cookieValue = "422";
+        TbUser user = userService.queryUserByToken(cookieValue);
+        if (user != null) {
+            //已登录
+            cartService.deleteItemByCart(user.getId(), itemId);
+        } else {
+            // 用户未登录
+            return "redirect:http://localhost:82/page/login.html";
+        }
+        return "redirect:/cart/show.html";
     }
 
 

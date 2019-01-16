@@ -8,7 +8,6 @@ import com.shop.mapper.CartMapper;
 import com.shop.mapper.ItemMapper;
 import com.shop.pojo.Cart;
 import com.shop.pojo.TbItem;
-import com.sun.jdi.LongValue;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -64,12 +63,6 @@ public class CartServiceImpl implements CartService {
             cart.setUpdated(cart.getCreated());
             carts.add(cart);
         }
-//        Cart selectOne = cartMapper.selectOne(cart);
-//        if (selectOne != null) {
-//            cartMapper.updateByPrimaryKeySelective(cart);
-//        } else {
-//            cartMapper.insertSelective(cart);
-//        }
         // 把添加好的购物车保存在redis中
         try {
             redisUtils.set(SHOP_CART_KEY + userId, MAPPER.writeValueAsString(carts));
@@ -77,6 +70,41 @@ public class CartServiceImpl implements CartService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void upDateItemByCart(Long userId, Long itemId, Integer num) {
+        List<Cart> carts = queryCartByUserId(userId);
+        // 遍历购物车，商品是否存在
+        for (Cart cart : carts) {
+            if (cart.getItemId().longValue() == itemId.longValue()) {
+                cart.setNum(num);
+                cart.setUpdated(new Date());
+            }
+        }
+        // 把添加好的购物车保存在redis中
+        try {
+            redisUtils.set(SHOP_CART_KEY + userId, MAPPER.writeValueAsString(carts));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteItemByCart(Long userId, Long itemId) {
+        List<Cart> carts = queryCartByUserId(userId);
+        // 遍历购物车，商品是否存在
+        for (Cart cart : carts) {
+            if (cart.getItemId().longValue() == itemId.longValue()) {
+                carts.remove(cart);
+                try {
+                    redisUtils.set(SHOP_CART_KEY + userId, MAPPER.writeValueAsString(carts));
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
     }
 
     @Override
