@@ -15,7 +15,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="archive" name="shop-cart-interface-0.0.1-SNAPSHOT.jar">
-            <element id="module-output" name="shop-cat-interface" />
+            <element id="module-output" name="shop-cart-interface" />
           </element>
           <element id="archive" name="shop-manager-pojo-0.0.1-SNAPSHOT.jar">
             <element id="module-output" name="shop-manager-pojo" />

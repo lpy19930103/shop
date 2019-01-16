@@ -59,7 +59,7 @@
     </div>
 </form>
 <script type="text/javascript">
-	var redirectUrl = "${redirect}";
+	var redirectUrl = "${redirectURL}";
 	var LOGIN = {
 			checkInput:function() {
 				if ($("#loginname").val() == "") {

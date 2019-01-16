@@ -30,7 +30,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="shop-cat-interface" />
+    <orderEntry type="module" module-name="shop-cart-interface" />
     <orderEntry type="module" module-name="shop-manager-pojo" />
     <orderEntry type="library" name="Maven: tk.mybatis:mapper:4.1.2" level="project" />
     <orderEntry type="library" name="Maven: javax.persistence:persistence-api:1.0" level="project" />
