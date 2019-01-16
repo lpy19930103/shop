@@ -9,9 +9,9 @@
         <relativePath>../shop-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
 
     <artifactId>shop-cart</artifactId>
-    <packaging>pom</packaging>
     <modules>
         <module>../shop-cart-interface</module>
         <module>../shop-cart-service</module>

@@ -18,7 +18,7 @@
 
     <!-- 配置dubbo服务 -->
     <dubbo:application name="shop-search-web"/>
-    <dubbo:registry address="zookeeper://192.168.52.135:2181"/>
+    <dubbo:registry address="zookeeper://192.168.52.136:2181"/>
 
     <!-- 声明要调用的服务，timeout是设置连接超时最长时间,如果不设置，超时时间默认是3秒 -->
      <dubbo:reference interface="com.shop.search.service.SearchService"

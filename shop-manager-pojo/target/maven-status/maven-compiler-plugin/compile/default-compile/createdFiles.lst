@@ -21,6 +21,7 @@ com\shop\pojo\TbOrder.class
 com\shop\pojo\TbItemExample$Criteria.class
 com\shop\pojo\TbItemCat.class
 com\shop\pojo\TbUserExample$Criterion.class
+com\shop\pojo\Cart.class
 com\shop\pojo\TbItemParam.class
 com\shop\pojo\TbItemDescExample$GeneratedCriteria.class
 com\shop\pojo\TbOrderItemExample$Criterion.class

@@ -103,12 +103,13 @@ public class UserController {
                 String ticket = "" + poolJedisClient.incr(this.LOGIN_COOKIE) + result.getId();
                 // 把ticket和用户数据放到redis中,模拟session，原来的session有效时间是半小时
                 poolJedisClient.set(SHOP_SSO_KEY + ticket, MAPPER.writeValueAsString(result), 60 * 30);
+                System.out.println("ticket = " + ticket);
                 CookieUtils.setCookie(httpServletRequest, httpServletResponse, USER_TOKEN, ticket, 60 * 60 * 24, true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            easyResult.setStatus(200);
+            easyResult.setStatus(0);
             easyResult.setMsg("登录失败");
         }
         return easyResult;

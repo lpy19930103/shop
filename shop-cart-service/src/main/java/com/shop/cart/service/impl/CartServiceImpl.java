@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shop.cart.redis.RedisUtils;
 import com.shop.cart.service.CartService;
+import com.shop.mapper.CartMapper;
 import com.shop.mapper.ItemMapper;
 import com.shop.pojo.Cart;
 import com.shop.pojo.TbItem;
@@ -29,7 +30,11 @@ public class CartServiceImpl implements CartService {
 
     @Autowired
     private ItemMapper itemMapper;
+
     private final static ObjectMapper MAPPER = new ObjectMapper();
+
+    @Autowired
+    private CartMapper cartMapper;
 
     @Override
     public void saveItemByCart(Long userId, Long itemId, Integer num) {
@@ -37,7 +42,7 @@ public class CartServiceImpl implements CartService {
         Cart cart = null;
         // 遍历购物车，商品是否存在
         for (Cart c : carts) {
-            if (c.getId().longValue() == itemId.longValue()) {
+            if (c.getItemId().longValue() == itemId.longValue()) {
                 cart = c;
             }
         }
@@ -52,13 +57,19 @@ public class CartServiceImpl implements CartService {
             cart.setUserId(userId);
             cart.setItemId(itemId);
             cart.setItemTitle(item.getTitle());
-            cart.setItemPrice(Long.valueOf(item.getPrice()));
+            cart.setItemPrice(item.getPrice());
             cart.setItemImage(item.getImage());
             cart.setNum(num);
             cart.setCreated(new Date());
             cart.setUpdated(cart.getCreated());
             carts.add(cart);
         }
+//        Cart selectOne = cartMapper.selectOne(cart);
+//        if (selectOne != null) {
+//            cartMapper.updateByPrimaryKeySelective(cart);
+//        } else {
+//            cartMapper.insertSelective(cart);
+//        }
         // 把添加好的购物车保存在redis中
         try {
             redisUtils.set(SHOP_CART_KEY + userId, MAPPER.writeValueAsString(carts));

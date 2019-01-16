@@ -6,6 +6,7 @@
         <artifactId>shop-cart</artifactId>
         <groupId>com.lpy</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../shop-cart/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl extends BaseServiceImpl<TbUser> implements UserService {
-    @Value("${SHOP_USER_TOKEN_KEY}")
-    private String SHOP_USER_TOKEN_KEY;
+    @Value("${SHOP_SSO_KEY}")
+    private String SHOP_SSO_KEY;
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
     @Autowired
@@ -43,10 +43,10 @@ public class UserServiceImpl extends BaseServiceImpl<TbUser> implements UserServ
 
     @Override
     public TbUser queryUserByToken(String token) {
-        String json = poolJedisClient.get(SHOP_USER_TOKEN_KEY + token);
+        String json = poolJedisClient.get(SHOP_SSO_KEY + token);
         try {
             if (StringUtils.isNotEmpty(json)) {
-                poolJedisClient.expire(SHOP_USER_TOKEN_KEY + token, 60 * 30);
+                poolJedisClient.expire(SHOP_SSO_KEY + token, 60 * 30);
                 return MAPPER.readValue(json, TbUser.class);
             }
 

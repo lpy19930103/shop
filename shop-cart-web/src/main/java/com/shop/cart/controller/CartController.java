@@ -2,6 +2,7 @@ package com.shop.cart.controller;
 
 import com.shop.cart.service.CartService;
 import com.shop.common.utils.CookieUtils;
+import com.shop.pojo.Cart;
 import com.shop.pojo.TbItemCat;
 import com.shop.pojo.TbUser;
 import com.shop.sso.service.UserService;
@@ -28,11 +29,17 @@ public class CartController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(method = RequestMethod.GET)
+    public String toCart() {
+        return "cart";
+    }
+
 
     @RequestMapping(value = "{itemId}", method = RequestMethod.GET)
     public String saveItemByCart(@PathVariable("itemId") Long itemId, Integer num, HttpServletRequest request) {
 
         String cookieValue = CookieUtils.getCookieValue(request, USER_TOKEN);
+        cookieValue = "422";
         TbUser user = userService.queryUserByToken(cookieValue);
         if (user != null) {
             //已登录
@@ -42,14 +49,15 @@ public class CartController {
         }
 
         // 重定向到购物车详情页
-        return "redirect:/cart/cart.html";
+        return "redirect:/show.html";
     }
 
     @RequestMapping(value = "show", method = RequestMethod.GET)
     public String showCart(Model model, HttpServletRequest request) {
         String cookieValue = CookieUtils.getCookieValue(request, USER_TOKEN);
+        cookieValue = "422";
         TbUser user = userService.queryUserByToken(cookieValue);
-        List<TbItemCat> cartList = null;
+        List<Cart> cartList = null;
         // 判断用户是否登录
         if (user != null) {
             // 用户已登录

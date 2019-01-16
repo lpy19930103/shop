@@ -3,9 +3,10 @@ package com.shop.pojo;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Table(name = "cart")
-public class Cart extends BasePojo {
+public class Cart extends BasePojo implements Serializable {
     @Id
     private Long id;
     @Column(name = "user_id")
@@ -17,7 +18,7 @@ public class Cart extends BasePojo {
     @Column(name = "item_image")
     private String itemImage;
     @Column(name = "item_price")
-    private Long itemPrice;
+    private String itemPrice;
     @Column
     private Integer num;
 
@@ -61,11 +62,11 @@ public class Cart extends BasePojo {
         this.itemImage = itemImage;
     }
 
-    public Long getItemPrice() {
+    public String getItemPrice() {
         return itemPrice;
     }
 
-    public void setItemPrice(Long itemPrice) {
+    public void setItemPrice(String itemPrice) {
         this.itemPrice = itemPrice;
     }
 
