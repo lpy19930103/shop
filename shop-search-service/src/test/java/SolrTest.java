@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(value = "classpath*:spring/applicationContext-*.xml")
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(value = "classpath*:spring/applicationContext-*.xml")
 public class SolrTest {
-
+/*
     @Autowired
     private ItemMapper itemMapper;
 
@@ -76,12 +76,12 @@ public class SolrTest {
 
         } while (pagesize == 500);
 
-  /*      SolrInputDocument solrInputFields = new SolrInputDocument();
+  *//*      SolrInputDocument solrInputFields = new SolrInputDocument();
         solrInputFields.addField("id", "8847");
         solrInputFields.addField("title", "new2");
         //添加到索引库中
         httpSolrServer.add(solrInputFields);
-        httpSolrServer.commit();*/
+        httpSolrServer.commit();*//*
     }
 
 
@@ -126,5 +126,5 @@ public class SolrTest {
                 System.out.println("商品名称：" + solrDocument.get("title"));
             }
         }
-    }
+    }*/
 }

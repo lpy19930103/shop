@@ -72,7 +72,7 @@ public class UserController {
 
     @RequestMapping("register")
     @ResponseBody
-    @CrossOrigin(origins = "http://localhost:82")
+//    @CrossOrigin(origins = "http://localhost:82")
     public EasyResult register(TbUser user) {
         TbUser register = userService.register(user);
         EasyResult<TbUser> easyResult = new EasyResult<>();
@@ -90,7 +90,7 @@ public class UserController {
 
     @RequestMapping("login")
     @ResponseBody
-    @CrossOrigin(origins = "http://localhost:82")
+//    @CrossOrigin(origins = "http://localhost:82")
     public EasyResult login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, TbUser user) {
         EasyResult<TbUser> easyResult = new EasyResult<>();
         TbUser result = userService.login(user);
@@ -102,7 +102,7 @@ public class UserController {
                 // 生成唯一数ticket,可是使用redis的唯一数+用户id
                 String ticket = "" + poolJedisClient.incr(this.LOGIN_COOKIE) + result.getId();
                 // 把ticket和用户数据放到redis中,模拟session，原来的session有效时间是半小时
-                poolJedisClient.set(SHOP_SSO_KEY + ticket, MAPPER.writeValueAsString(result), 60 * 30);
+                poolJedisClient.set(SHOP_SSO_KEY + ticket, MAPPER.writeValueAsString(result), 24 * 60 * 60);
                 System.out.println("ticket = " + ticket);
                 CookieUtils.setCookie(httpServletRequest, httpServletResponse, USER_TOKEN, ticket, 60 * 60 * 24, true);
             } catch (Exception e) {

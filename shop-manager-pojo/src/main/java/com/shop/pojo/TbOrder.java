@@ -1,41 +1,72 @@
 package com.shop.pojo;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class TbOrder {
+@Table(name = "tb_order")
+public class TbOrder extends BasePojo implements Serializable {
+    @Column(name = "order_id")
     private String orderId;
-
+    @Column
     private String payment;
-
+    @Column(name = "payment_type")
     private Integer paymentType;
-
+    @Column(name = "post_fee")
     private String postFee;
-
+    @Column
     private Integer status;
-
+    @Column(name = "create_time")
     private Date createTime;
-
+    @Column(name = "update_time")
     private Date updateTime;
-
+    @Column(name = "payment_time")
     private Date paymentTime;
-
+    @Column(name = "consign_time")
     private Date consignTime;
-
+    @Column(name = "end_time")
     private Date endTime;
-
+    @Column(name = "close_time")
     private Date closeTime;
-
+    @Column(name = "shipping_name")
     private String shippingName;
-
+    @Column(name = "shipping_code")
     private String shippingCode;
-
+    @Column(name = "user_id")
     private Long userId;
-
+    @Column(name = "buyer_message")
     private String buyerMessage;
-
+    @Column(name = "buyer_nike")
     private String buyerNick;
-
+    @Column(name = "buyer_rate")
     private Integer buyerRate;
+
+    // 订单商品
+    @Transient
+    private List<TbOrderItem> orderItems;
+
+    // 订单物流
+    @Transient
+    private TbOrderShipping orderShipping;
+
+    public List<TbOrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<TbOrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public TbOrderShipping getOrderShipping() {
+        return orderShipping;
+    }
+
+    public void setOrderShipping(TbOrderShipping orderShipping) {
+        this.orderShipping = orderShipping;
+    }
 
     public String getOrderId() {
         return orderId;
@@ -171,5 +202,30 @@ public class TbOrder {
 
     public void setBuyerRate(Integer buyerRate) {
         this.buyerRate = buyerRate;
+    }
+
+    @Override
+    public String toString() {
+        return "TbOrder{" +
+                "orderId='" + orderId + '\'' +
+                ", payment='" + payment + '\'' +
+                ", paymentType=" + paymentType +
+                ", postFee='" + postFee + '\'' +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", paymentTime=" + paymentTime +
+                ", consignTime=" + consignTime +
+                ", endTime=" + endTime +
+                ", closeTime=" + closeTime +
+                ", shippingName='" + shippingName + '\'' +
+                ", shippingCode='" + shippingCode + '\'' +
+                ", userId=" + userId +
+                ", buyerMessage='" + buyerMessage + '\'' +
+                ", buyerNick='" + buyerNick + '\'' +
+                ", buyerRate=" + buyerRate +
+                ", orderItems=" + orderItems +
+                ", orderShipping=" + orderShipping +
+                '}';
     }
 }

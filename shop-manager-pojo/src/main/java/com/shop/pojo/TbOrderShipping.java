@@ -1,29 +1,33 @@
 package com.shop.pojo;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
-public class TbOrderShipping {
+@Table(name = "order_shipping")
+public class TbOrderShipping extends BasePojo implements Serializable {
+    @Column(name = "order_id")
     private String orderId;
-
+    @Column(name = "receiver_name")
     private String receiverName;
-
+    @Column(name = "receiver_phone")
     private String receiverPhone;
-
+    @Column(name = "receiver_mobile")
     private String receiverMobile;
-
+    @Column(name = "receiver_state")
     private String receiverState;
-
+    @Column(name = "receiver_city")
     private String receiverCity;
-
+    @Column(name = "receiver_district")
     private String receiverDistrict;
-
+    @Column(name = "receiver_address")
     private String receiverAddress;
-
+    @Column(name = "receiver_zip")
     private String receiverZip;
 
-    private Date created;
 
-    private Date updated;
+
 
     public String getOrderId() {
         return orderId;
@@ -97,19 +101,18 @@ public class TbOrderShipping {
         this.receiverZip = receiverZip == null ? null : receiverZip.trim();
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
+    @Override
+    public String toString() {
+        return "TbOrderShipping{" +
+                "orderId='" + orderId + '\'' +
+                ", receiverName='" + receiverName + '\'' +
+                ", receiverPhone='" + receiverPhone + '\'' +
+                ", receiverMobile='" + receiverMobile + '\'' +
+                ", receiverState='" + receiverState + '\'' +
+                ", receiverCity='" + receiverCity + '\'' +
+                ", receiverDistrict='" + receiverDistrict + '\'' +
+                ", receiverAddress='" + receiverAddress + '\'' +
+                ", receiverZip='" + receiverZip + '\'' +
+                '}';
     }
 }
