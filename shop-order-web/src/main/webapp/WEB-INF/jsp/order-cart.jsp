@@ -30,16 +30,16 @@
     <div id="logo"><a href="/"><img src="/images/taotao-logo.gif" alt="淘淘商城"></a></div>
 </div>
 
-<form action="order" id="orderForm" class="hide" action="/order/submit.html" method="post">
+<form id="orderForm" class="hide" action="/order/submit.html" method="post">
     <input type="hidden" name="paymentType" value="1"/>
     <c:forEach items="${cartList }" var="cart" varStatus="status">
         <c:set var="totalPrice" value="${ totalPrice + (cart.itemPrice * cart.num)}"/>
-        <input type="hidden" name="order.orderItems[${status.index}].itemId" value="${cart.id}"/>
-        <input type="hidden" name="order.orderItems[${status.index}].num" value="${cart.num }"/>
-        <input type="hidden" name="order.orderItems[${status.index}].price" value="${cart.itemPrice}"/>
-        <input type="hidden" name="order.orderItems[${status.index}].totalFee" value="${cart.itemPrice * cart.num}"/>
-        <input type="hidden" name="order.orderItems[${status.index}].title" value="${cart.itemTitle}"/>
-        <input type="hidden" name="order.orderItems[${status.index}].picPath" value="${cart.itemImage}"/>
+        <input type="hidden" name="orderItems[${status.index}].itemId" value="${cart.id}"/>
+        <input type="hidden" name="orderItems[${status.index}].num" value="${cart.num }"/>
+        <input type="hidden" name="orderItems[${status.index}].price" value="${cart.itemPrice}"/>
+        <input type="hidden" name="orderItems[${status.index}].totalFee" value="${cart.itemPrice * cart.num}"/>
+        <input type="hidden" name="orderItems[${status.index}].title" value="${cart.itemTitle}"/>
+        <input type="hidden" name="orderItems[${status.index}].picPath" value="${cart.itemImage}"/>
     </c:forEach>
     <input type="hidden" name="payment"
            value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" value="${totalPrice/100 }"/>"/>
@@ -335,37 +335,154 @@
 <jsp:include page="commons/footer.jsp"/>
 </body>
 <script>
-    $.fn.serializeObject = function () {
-        var o = {};
-        var a = this.serializeArray();
-        $.each(a, function () {
-            if (o[this.name] !== undefined) {
-                if (!o[this.name].push) {
-                    o[this.name] = [o[this.name]];
-                }
-                o[this.name].push(this.value || '');
-            } else {
-                o[this.name] = this.value || '';
-            }
-        });
-        return o;
-    };
+
 
     function submit() {
-        var str = $("#orderForm").serialize();
-        console.log(str);
+        var data = $('#orderForm').formGet();
+        console.log(data);
         $.ajax({
             url: '/order/submit',
             type: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
+            contentType: "application/json",
             dataType: "json",
-            data: str,//datastr=JSON.stringify(datastr);转换为JSON格式
+            data: JSON.stringify(data),//转换为JSON格式
             success: function (data) {
                 alert('111');
             }
         });
+    }
+
+    var _fnObjectGetPropertyChainValue = function (obj, propertyChain) {
+            /* 获取属性链的值 */
+            if (!obj) return;
+            if (!propertyChain) return obj;
+            var property,
+                chains = propertyChain.split('.'),
+                i = 0,
+                len = chains.length;
+            for (;
+                (property = chains[i]) && i < len - 1; i++) {
+                if (!obj[property]) return;
+                obj = obj[property];
+            }
+            return obj[property];
+        },
+        _fnObjectSetPropertyChainValue = function (obj, propertyChain, value, allowMulti) {
+            /* 设置属性链的值 */
+            if (!obj || !propertyChain) return;
+            var property,
+                chainObj = obj,
+                chains = propertyChain.split('.'),
+                i = 0,
+                len = chains.length;
+            for (;
+                (property = chains[i]) && i < len - 1; i++) {
+                if (!chainObj[property]) {
+                    chainObj[property] = {};
+                }
+                chainObj = chainObj[property];
+            }
+            // 改进版：checkbox的多选可以组合为数组
+            if (!allowMulti || chainObj[property] === undefined) {
+                chainObj[property] = value;
+            } else {
+                var pv = chainObj[property];
+                if ($.isArray(pv)) {
+                    pv.push(value);
+                } else {
+                    chainObj[property] = [pv, value];
+                }
+            }
+            return obj;
+        };
+
+
+    /**
+          * jQuery form 扩展获取数据
+          */
+    $.fn.formGet = function (opts) {
+        opts = $.extend({}, opts);
+        var data = {},
+            els = opts.formGroup ? this.find('[form-group="' + opts.formGroup + '"]') : this.find('[name]');
+        if (!els || !els.length) {
+            return data;
+        }
+
+
+        var fnSetValue = (function (emptyToNull) {
+            return emptyToNull ? function (obj, propertyChain, value, allowMulti) {
+                value !== '' && _fnObjectSetPropertyChainValue(obj, propertyChain, value, allowMulti)
+            } : _fnObjectSetPropertyChainValue
+        })(opts.emptyToNull);
+
+
+        els.each(function () {
+            var $this = $(this),
+                type = $this.attr('type'),
+                name = $this.attr('name'), // 可能为属性链
+                tag = this.tagName.toLowerCase();
+            if (tag == 'input') {
+                if (type == 'checkbox') {
+                    var v = $(this).val();
+                    if (v == 'on' || !v) {
+                        fnSetValue(data, name, $(this).prop('checked'));
+                    } else {
+                        $(this).prop('checked') && fnSetValue(data, name, v, true);
+                    }
+                } else if (type == 'radio') {
+                    this.checked && fnSetValue(data, name, $this.val());
+                } else {
+                    fnSetValue(data, name, $this.val());
+                }
+            } else if ('|select|textarea|'.indexOf('|' + tag + '|') > -1) {
+                fnSetValue(data, name, $this.val());
+            } else {
+                fnSetValue(data, name, $.trim($this.text()));
+            }
+        });
+        return data;
+    };
+
+
+    /**
+          * jQuery form 扩展绑定数据
+          * 
+          */
+    $.fn.formSet = function (data, formGroup) {
+        var els = formGroup ? this.find('[form-group="' + formGroup + '"]') : this.find('[name]');
+        if (!els || !els.length) {
+            return this;
+        }
+
+
+        els.each(function () {
+            var $this = $(this),
+                type = $this.attr('type'),
+                name = $this.attr('name'),
+                tag = this.tagName.toLowerCase();
+
+
+            var value = _fnObjectGetPropertyChainValue(data, name);
+            if (tag == 'input') {
+                if (type == 'checkbox') {
+                    var v = $(this).val();
+                    if (v == 'on' || !v) {
+                        this.checked = value ? 'checked' : '';
+                    } else {
+                        this.checked = $.isArray(value) && value.indexOf(v) > -1 ? 'checked' : ''
+                    }
+                } else if (type == 'radio') {
+                    this.checked = $this.val() == String(value) ? 'checked' : '';
+                } else {
+                    $this.val(value);
+                }
+            } else if ('|select|textarea|'.indexOf('|' + tag + '|') > -1) {
+                $this.val(value);
+            } else {
+                $this.html(value);
+            }
+        });
+        return this;
     }
 
 </script>

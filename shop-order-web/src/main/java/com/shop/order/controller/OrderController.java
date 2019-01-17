@@ -37,7 +37,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "submit", method = RequestMethod.POST)
-    public String submitOrder(TbOrder order) {
+    public String submitOrder(@RequestBody TbOrder order) {
         System.out.println(order.toString());
 
         return "success";
