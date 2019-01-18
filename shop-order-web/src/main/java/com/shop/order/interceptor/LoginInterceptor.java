@@ -22,7 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         String cookieValue = CookieUtils.getCookieValue(httpServletRequest, USER_TOKEN);
-        cookieValue = "822";
+        cookieValue = "1522";
 
         // 跳转到登录页面,需要保存用户现在的请求地址，如果登录成功，应该跳转到这个地址上
         String redirectURL = httpServletRequest.getRequestURL().toString();

@@ -16,7 +16,7 @@
     <!-- 使用multicast广播注册中心暴露服务地址 -->
     <!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
     <!-- <dubbo:registry address="N/A" /> -->
-    <dubbo:registry address="zookeeper://192.168.52.137:2181"/>
+    <dubbo:registry address="zookeeper://192.168.52.138:2181"/>
     <dubbo:protocol name="dubbo" port="20881"/>
     <dubbo:service interface="com.shop.sso.service.UserService" ref="userServiceImpl"/>
 </beans>

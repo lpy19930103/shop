@@ -34,12 +34,18 @@
     <input type="hidden" name="paymentType" value="1"/>
     <c:forEach items="${cartList }" var="cart" varStatus="status">
         <c:set var="totalPrice" value="${ totalPrice + (cart.itemPrice * cart.num)}"/>
-        <input type="hidden" name="orderItems[${status.index}].itemId" value="${cart.id}"/>
-        <input type="hidden" name="orderItems[${status.index}].num" value="${cart.num }"/>
-        <input type="hidden" name="orderItems[${status.index}].price" value="${cart.itemPrice}"/>
-        <input type="hidden" name="orderItems[${status.index}].totalFee" value="${cart.itemPrice * cart.num}"/>
-        <input type="hidden" name="orderItems[${status.index}].title" value="${cart.itemTitle}"/>
-        <input type="hidden" name="orderItems[${status.index}].picPath" value="${cart.itemImage}"/>
+        <%--<input type="hidden" name="orderItems[${status.index}].itemId" value="${cart.id}"/>--%>
+        <%--<input type="hidden" name="orderItems[${status.index}].num" value="${cart.num }"/>--%>
+        <%--<input type="hidden" name="orderItems[${status.index}].price" value="${cart.itemPrice}"/>--%>
+        <%--<input type="hidden" name="orderItems[${status.index}].totalFee" value="${cart.itemPrice * cart.num}"/>--%>
+        <%--<input type="hidden" name="orderItems[${status.index}].title" value="${cart.itemTitle}"/>--%>
+        <%--<input type="hidden" name="orderItems[${status.index}].picPath" value="${cart.itemImage}"/>--%>
+        <input type="hidden" name="orderItems.itemId" value="${cart.itemId}"/>
+        <input type="hidden" name="orderItems.num" value="${cart.num }"/>
+        <input type="hidden" name="orderItems.price" value="${cart.itemPrice}"/>
+        <input type="hidden" name="orderItems.totalFee" value="${cart.itemPrice * cart.num}"/>
+        <input type="hidden" name="orderItems.title" value="${cart.itemTitle}"/>
+        <input type="hidden" name="orderItems.picPath" value="${cart.itemImage}"/>
     </c:forEach>
     <input type="hidden" name="payment"
            value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" value="${totalPrice/100 }"/>"/>
@@ -346,8 +352,12 @@
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(data),//转换为JSON格式
-            success: function (data) {
-                alert('111');
+            success: function (order) {
+                console.log(order);
+                if (order.status === 200) {
+                    location.href = "/order/success.html?id=" + order.dto;
+
+                }
             }
         });
     }

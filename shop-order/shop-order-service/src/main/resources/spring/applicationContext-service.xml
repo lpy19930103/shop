@@ -13,7 +13,7 @@
     <!-- 使用dubbo发布服务 -->
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="shop-order"/>
-    <dubbo:registry address="zookeeper://192.168.52.137:2181"/>
+    <dubbo:registry address="zookeeper://192.168.52.138:2181"/>
     <dubbo:protocol name="dubbo" port="20884"/>
 
     <!-- 声明需要暴露的服务接口 -->

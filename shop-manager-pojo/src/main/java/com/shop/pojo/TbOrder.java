@@ -39,24 +39,26 @@ public class TbOrder extends BasePojo implements Serializable {
     private Long userId;
     @Column(name = "buyer_message")
     private String buyerMessage;
-    @Column(name = "buyer_nike")
+    @Column(name = "buyer_nick")
     private String buyerNick;
     @Column(name = "buyer_rate")
     private Integer buyerRate;
 
     // 订单商品
+//    @Transient
+//    private List<TbOrderItem> orderItems;
     @Transient
-    private List<TbOrderItem> orderItems;
+    private TbOrderItem orderItems;
 
     // 订单物流
     @Transient
     private TbOrderShipping orderShipping;
 
-    public List<TbOrderItem> getOrderItems() {
+    public TbOrderItem getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(List<TbOrderItem> orderItems) {
+    public void setOrderItems(TbOrderItem orderItems) {
         this.orderItems = orderItems;
     }
 

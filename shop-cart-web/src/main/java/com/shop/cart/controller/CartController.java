@@ -39,7 +39,7 @@ public class CartController {
     public String saveItemByCart(@PathVariable("itemId") Long itemId, Integer num, HttpServletRequest request) {
 
         String cookieValue = CookieUtils.getCookieValue(request, USER_TOKEN);
-        cookieValue = "822";
+        cookieValue = "1522";
         TbUser user = userService.queryUserByToken(cookieValue);
         if (user != null) {
             //已登录
@@ -56,7 +56,7 @@ public class CartController {
     @RequestMapping(value = "show", method = RequestMethod.GET)
     public String showCart(Model model, HttpServletRequest request) {
         String cookieValue = CookieUtils.getCookieValue(request, USER_TOKEN);
-        cookieValue = "822";
+        cookieValue = "1522";
         TbUser user = userService.queryUserByToken(cookieValue);
         List<Cart> cartList = null;
         // 判断用户是否登录

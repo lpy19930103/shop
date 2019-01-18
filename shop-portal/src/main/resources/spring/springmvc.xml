@@ -15,7 +15,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <dubbo:application name="shop-portal"/>
-    <dubbo:registry address="zookeeper://192.168.52.137:2181"/>
+    <dubbo:registry address="zookeeper://192.168.52.138:2181"/>
     <dubbo:reference interface="com.shop.service.ContentCategoryService" id="ContentCategoryService" timeout="1000000"/>
     <dubbo:reference interface="com.shop.service.ContentService" id="ContentService" timeout="1000000"/>
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

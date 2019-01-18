@@ -1,12 +1,15 @@
 package com.shop.pojo;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import java.io.Serializable;
 
 @Table(name = "tb_order_item")
-public class TbOrderItem extends BasePojo implements Serializable {
+public class TbOrderItem  implements Serializable {
     @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     @Column(name = "item_id")
     private String itemId;
@@ -17,9 +20,9 @@ public class TbOrderItem extends BasePojo implements Serializable {
     @Column
     private String title;
     @Column
-    private Long price;
+    private String price;
     @Column(name = "total_fee")
-    private Long totalFee;
+    private String totalFee;
     @Column(name = "pic_path")
     private String picPath;
 
@@ -63,19 +66,19 @@ public class TbOrderItem extends BasePojo implements Serializable {
         this.title = title == null ? null : title.trim();
     }
 
-    public Long getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public Long getTotalFee() {
+    public String getTotalFee() {
         return totalFee;
     }
 
-    public void setTotalFee(Long totalFee) {
+    public void setTotalFee(String totalFee) {
         this.totalFee = totalFee;
     }
 
