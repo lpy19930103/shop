@@ -7,4 +7,6 @@ public interface OrderService extends BaseService<TbOrder> {
     String saveOrder(TbOrder order);
 
     TbOrder queryOrderById(String id);
+
+    void clearOrder();
 }

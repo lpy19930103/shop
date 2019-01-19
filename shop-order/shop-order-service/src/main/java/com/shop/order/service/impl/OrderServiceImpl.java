@@ -8,9 +8,12 @@ import com.shop.order.service.redis.RedisUtils;
 import com.shop.pojo.TbOrder;
 import com.shop.pojo.TbOrderItem;
 import com.shop.pojo.TbOrderShipping;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.annotation.Order;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
 
@@ -68,5 +71,21 @@ public class OrderServiceImpl extends BaseServiceImpl<TbOrder> implements OrderS
         tbOrder.setOrderItems(tbOrderItem1);
 
         return tbOrder1;
+    }
+
+    @Override
+    public void clearOrder() {
+        Example example = new Example(TbOrder.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("status", 1);
+        criteria.andEqualTo("paymentType", 1);
+        criteria.andLessThanOrEqualTo("createTime", new DateTime().minusHours(1));
+        TbOrder tbOrder = new TbOrder();
+        tbOrder.setStatus(6);
+        tbOrder.setCloseTime(new Date());
+
+        orderMapper.updateByExampleSelective(tbOrder, example);
+
+
     }
 }
