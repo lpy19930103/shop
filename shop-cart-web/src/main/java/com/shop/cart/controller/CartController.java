@@ -39,6 +39,7 @@ public class CartController {
     public String saveItemByCart(@PathVariable("itemId") Long itemId, Integer num, HttpServletRequest request) {
 
         String cookieValue = CookieUtils.getCookieValue(request, USER_TOKEN);
+        System.out.println("cookieValue = " +cookieValue);
         cookieValue = "1722";
         TbUser user = userService.queryUserByToken(cookieValue);
         if (user != null) {
@@ -56,6 +57,7 @@ public class CartController {
     @RequestMapping(value = "show", method = RequestMethod.GET)
     public String showCart(Model model, HttpServletRequest request) {
         String cookieValue = CookieUtils.getCookieValue(request, USER_TOKEN);
+        System.out.println("cookieValue = " +cookieValue);
         cookieValue = "1722";
         TbUser user = userService.queryUserByToken(cookieValue);
         List<Cart> cartList = null;
@@ -77,6 +79,7 @@ public class CartController {
     @RequestMapping(value = "update/num/{itemId}/{num}")
     public String updateNum(@PathVariable("itemId") Long itemId, @PathVariable("num") Integer num, HttpServletRequest request) {
         String cookieValue = CookieUtils.getCookieValue(request, USER_TOKEN);
+        System.out.println("cookieValue = " +cookieValue);
         cookieValue = "522";
         TbUser user = userService.queryUserByToken(cookieValue);
         if (user != null) {
@@ -92,6 +95,7 @@ public class CartController {
     @RequestMapping("delete/{itemId}")
     public String deleteCart(@PathVariable("itemId") Long itemId, HttpServletRequest request) {
         String cookieValue = CookieUtils.getCookieValue(request, USER_TOKEN);
+        System.out.println("cookieValue = " +cookieValue);
         cookieValue = "422";
         TbUser user = userService.queryUserByToken(cookieValue);
         if (user != null) {

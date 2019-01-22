@@ -53,6 +53,7 @@
         <activemq.version>5.9.1</activemq.version>
         <freemarker.version>2.3.23</freemarker.version>
         <quartz.version>2.2.2</quartz.version>
+        <tk.mybatis.version>4.1.2</tk.mybatis.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -136,7 +137,8 @@
             <dependency>
                 <groupId>tk.mybatis</groupId>
                 <artifactId>mapper</artifactId>
-                <version>4.1.2</version>
+                <version>${tk.mybatis.version}</version>
+
             </dependency>
             <!-- MySql -->
             <dependency>
@@ -304,17 +306,17 @@
         <pluginManagement>
             <plugins>
                 <!-- 配置Tomcat插件 -->
-                    <plugin>
-                        <groupId>org.apache.tomcat.maven</groupId>
-                        <artifactId>tomcat7-maven-plugin</artifactId>
-                        <version>2.2</version>
-                        <configuration>
-                            <port>81</port>
-                            <path>/</path>
-                            <uriEncoding>UTF-8</uriEncoding>
-                            <server>tomcat7</server>
-                        </configuration>
-                    </plugin>
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <port>81</port>
+                        <path>/</path>
+                        <uriEncoding>UTF-8</uriEncoding>
+                        <server>tomcat7</server>
+                    </configuration>
+                </plugin>
 
                 <!-- 配置打包时跳过测试 ，首次配置使用的时候会自动联网进行下载 -->
                 <plugin>

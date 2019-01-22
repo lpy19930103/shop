@@ -23,7 +23,7 @@
     <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
 
     <dubbo:application name="shop-manager-web"/>
-    <dubbo:registry address="zookeeper://192.168.52.138:2181"/>
+    <dubbo:registry address="zookeeper://192.168.52.139:2181"/>
     <dubbo:reference interface="com.shop.service.TbItemCatService" id="TbItemCatService" timeout="1000000"/>
     <dubbo:reference interface="com.shop.service.ItemService" id="ItemService" timeout="1000000"/>
     <dubbo:reference interface="com.shop.service.ItemDescService" id="ItemDescService" timeout="1000000"/>
